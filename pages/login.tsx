@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Button, Input } from 'components/form';
 import { Layout, Pattern } from 'components/common';
 
-const SignupPage = () => {
+const LoginPage = () => {
   return (
     <Layout title="Brank">
       <div className="container">
@@ -18,9 +18,9 @@ const SignupPage = () => {
           </div>
 
           <div className="info">
-            <p>Already have a Brank account?</p>
-            <Link href="/login">
-              <a>Log in</a>
+            <p>Don't have a Brank account?</p>
+            <Link href="/signup">
+              <a>Sign up</a>
             </Link>
           </div>
 
@@ -33,16 +33,8 @@ const SignupPage = () => {
           </svg>
 
           <div className="form">
-            <div className="flex-row row">
-              <Input value="" onChange={() => {}} label="First Name" placeholder="Tim" />
-              <Input value="" onChange={() => {}} label="Last Name" placeholder="Apple" />
-            </div>
             <div className="row">
               <Input value="" onChange={() => {}} label="Email" placeholder="tim@apple.com" />
-            </div>
-
-            <div className="row">
-              <Input value="" onChange={() => {}} label="Company Name" placeholder="Apple Inc." />
             </div>
 
             <div className="row">
@@ -55,23 +47,9 @@ const SignupPage = () => {
               />
             </div>
 
-            <div className="terms-checkbox">
-              <input type="checkbox" />
-              <p>
-                By signing up you agree to the{' '}
-                <Link href="/login">
-                  <a>Terms of Use</a>
-                </Link>{' '}
-                and
-                <Link href="/login">
-                  <a> Privacy Policy</a>
-                </Link>
-              </p>
-            </div>
-
             <div className="row">
               <Button>
-                <p className="success-btn-text">Get started</p>
+                <p className="success-btn-text">Login</p>
               </Button>
             </div>
           </div>
@@ -81,4 +59,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default LoginPage;
