@@ -1,0 +1,29 @@
+.formControl {
+  flex-direction: column;
+  display: flex;
+}
+
+.input {
+  border: 2px solid var(--primary-black);
+  border-radius: 4px;
+  padding: 0.6rem 10px;
+  box-sizing: border-box;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.input::placeholder {
+  color: var(--primary-gray);
+}
+
+.input:focus {
+  border: 2px solid var(--primary-green);
+}
+
+.label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--primary-text-color);
+}

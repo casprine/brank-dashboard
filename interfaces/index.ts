@@ -1,10 +1,10 @@
-// You can include shared interfaces/types in a separate file
-// and then use them in any component by importing them. For
-// example, to import the interface below do:
-//
-// import User from 'path/to/interfaces';
+import React, { ReactNode } from 'react';
 
-export type User = {
-  id: number
-  name: string
+export interface InputProps extends React.HTMLProps<HTMLInputElement> {
+  label?: string;
+  value: string;
+}
+
+export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+  children: ReactNode;
 }
