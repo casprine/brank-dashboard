@@ -1,5 +1,5 @@
 import * as React from 'react';
-function SvgComponent(props) {
+function SvgComponent(props: any) {
   return (
     <svg width={1248} height={1239} viewBox="0 0 1248 1239" fill="none" {...props}>
       <path

@@ -5,6 +5,6 @@ export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   value: string;
 }
 
-export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
