@@ -8,10 +8,6 @@ const LoginPage = () => {
   return (
     <Layout title="Brank">
       <div className="container">
-        <div className="pattern">
-          <Pattern />
-        </div>
-
         <div className="auth-container">
           <div className="logo-container">
             <Image src="/images/brank-logo.png" alt="brank-logo" width={60} height={60} />
