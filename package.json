@@ -8,6 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "framer-motion": "^3.2.2-rc.1",
     "next": "latest",
     "normalize.css": "^8.0.1",
     "react": "^16.12.0",
