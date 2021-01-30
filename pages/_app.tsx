@@ -1,19 +1,14 @@
 import type { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import router from 'next/router';
-import { ThemeProvider } from 'styled-components';
-import 'normalize.css';
 import GlobalStyles from 'theme/globalStyle';
-
-import theme from 'theme';
+import 'normalize.css';
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <GlobalStyles />
+      <Component {...pageProps} />
     </>
   );
 }
