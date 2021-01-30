@@ -12,7 +12,7 @@ const IndexPage = () => (
         <h1>Brank</h1>
         <p>Mordernizing archaic banking infrastructure</p>
         <Stack isInline ai="center" className="form-wrapper">
-          <Input placeholder="Enter your email" className="email-input" />
+          <Input type="email" placeholder="Enter your email" className="email-input" />
           <Button>
             <p>Join</p>
           </Button>

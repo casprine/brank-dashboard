@@ -9,7 +9,7 @@ const generateStyles: StyleFunction = () => {
     border: '0',
     margin: '20px 0',
     backgroundColor: theme.colors.primary,
-    boxShadow: theme.shadows.lg,
+    boxShadow: theme.shadows.md,
     cursor: 'pointer',
     outline: 'none',
     transition: 'all 0.2s ease-in-out',

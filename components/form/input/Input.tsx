@@ -2,6 +2,7 @@ import React from 'react';
 import { IInputProps } from 'types';
 
 import inputStyles from './input.styles';
+type InputPropsType = React.HTMLAttributes<HTMLInputElement>;
 
 export const inputSizes = {
   sm: 32,
@@ -10,7 +11,14 @@ export const inputSizes = {
   xl: 56,
 };
 
-const Input: React.FC<IInputProps> = ({ label, value, placeholder, onChange, className = '' }) => {
+const Input: React.FC<IInputProps & InputPropsType> = ({
+  type,
+  label,
+  value,
+  placeholder,
+  onChange,
+  className = '',
+}) => {
   return (
     <div css={inputStyles()} className={`${className} input-container`}>
       {label && <label>{label}</label>}
@@ -20,6 +28,7 @@ const Input: React.FC<IInputProps> = ({ label, value, placeholder, onChange, cla
         value={value as string}
         placeholder={placeholder}
         onChange={onChange}
+        type={type}
       />
     </div>
   );
