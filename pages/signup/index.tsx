@@ -1,24 +1,27 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { Button, Input } from 'components/form';
+import { Button, Input, Checkbox } from 'components/form';
+import { Stack, Flex } from 'components/layout';
 import { Layout } from 'components/common';
 
 const SignupPage = () => {
   return (
     <Layout title="Brank">
-      <div className="container">
+      <div className="container" css={generateStyles()}>
         <div className="auth-container">
-          <div className="logo-container">
-            <Image src="/images/brank-logo.png" alt="brank-logo" width={60} height={60} />
-          </div>
+          <Stack>
+            <div className="logo-container">
+              <Image src="/images/brank-logo.png" alt="brank-logo" width={60} height={60} />
+            </div>
 
-          <div className="info">
-            <p>Already have a Brank account?</p>
-            <Link href="/login">
-              <a>Log in</a>
-            </Link>
-          </div>
+            <div className="info">
+              <p>Already have a Brank account?</p>
+              <Link href="/login">
+                <a>Log in</a>
+              </Link>
+            </div>
+          </Stack>
 
           <svg width={452} height={12} viewBox="0 0 452 12" fill="none">
             <path
@@ -28,11 +31,12 @@ const SignupPage = () => {
             />
           </svg>
 
-          <div className="form">
-            <div className="flex-row row">
+          <Stack className="form">
+            <Flex className="name-input-container">
               <Input value="" onChange={() => {}} label="First Name" placeholder="Tim" />
               <Input value="" onChange={() => {}} label="Last Name" placeholder="Apple" />
-            </div>
+            </Flex>
+
             <div className="row">
               <Input value="" onChange={() => {}} label="Email" placeholder="tim@apple.com" />
             </div>
@@ -52,17 +56,20 @@ const SignupPage = () => {
             </div>
 
             <div className="terms-checkbox">
-              <input type="checkbox" />
-              <p>
-                By signing up you agree to the{' '}
-                <Link href="/login">
-                  <a>Terms of Use</a>
-                </Link>{' '}
-                and
-                <Link href="/login">
-                  <a> Privacy Policy</a>
-                </Link>
-              </p>
+              <Checkbox
+                customLabel={
+                  <p>
+                    By signing up you agree to the{' '}
+                    <Link href="/login">
+                      <a>Terms of Use</a>
+                    </Link>{' '}
+                    and
+                    <Link href="/login">
+                      <a> Privacy Policy</a>
+                    </Link>
+                  </p>
+                }
+              />
             </div>
 
             <div className="row">
@@ -70,11 +77,49 @@ const SignupPage = () => {
                 <p className="success-btn-text">Get started</p>
               </Button>
             </div>
-          </div>
+          </Stack>
         </div>
       </div>
     </Layout>
   );
 };
+
+function generateStyles() {
+  return {
+    '.logo-container': {
+      padding: '0 50px',
+      marginBottom: '30px',
+    },
+    '.info': {
+      padding: '0 50px',
+      marginBottom: '30px',
+    },
+    '.info p': {
+      fontSize: '15px',
+      color: 'var(--primary-text-color)',
+      marginBottom: '10px',
+    },
+    '.info a': {
+      textDecoration: 'none',
+      color: 'var(--primary-green)',
+      fontSize: '14px',
+    },
+
+    '.form': {
+      width: '100%',
+      padding: '0 50px',
+      margin: '20px 0',
+    },
+
+    '.name-input-container': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      '.input-container': {
+        width: '48%',
+      },
+    },
+  };
+}
 
 export default SignupPage;

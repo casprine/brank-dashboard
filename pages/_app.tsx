@@ -1,9 +1,9 @@
-import type { AppProps /*, AppContext */ } from 'next/app';
+import type { AppProps } from 'next/app';
 import NProgress from 'nprogress';
 import router from 'next/router';
-import GlobalStyles from 'theme/globalStyle';
 import { ThemeProvider } from 'styled-components';
 import 'normalize.css';
+import GlobalStyles from 'theme/globalStyle';
 
 import theme from 'theme';
 

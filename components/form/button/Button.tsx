@@ -1,12 +1,9 @@
-import { ButtonProps } from 'interfaces';
-import styles from './button.module.css';
+import { ButtonProps } from 'types';
+
+import generateStyles from './button.styles';
 
 const Button = ({ children, ...rest }: ButtonProps) => {
-  return (
-    <button className={`${styles.btn} ${styles.btnSucesss}`} {...rest}>
-      {children}
-    </button>
-  );
+  return <button css={generateStyles()}>{children}</button>;
 };
 
 export default Button;

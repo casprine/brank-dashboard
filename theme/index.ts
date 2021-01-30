@@ -1,5 +1,3 @@
-import { DefaultTheme } from 'styled-components';
-
 import colors from './colors';
 import gradients from './gradients';
 import presets from './presets';
@@ -8,7 +6,7 @@ import shadows from './shadows';
 import animations from './animations';
 import breakpoints from './breakpoints';
 
-const theme: DefaultTheme = {
+const theme = {
   colors,
   gradients,
   presets,

@@ -1,11 +1,26 @@
-import { InputProps } from 'interfaces';
-import styles from './input.module.css';
+import React from 'react';
+import { IInputProps } from 'types';
 
-const Input = ({ label, value, ...rest }: InputProps) => {
+import inputStyles from './input.styles';
+
+export const inputSizes = {
+  sm: 32,
+  md: 40,
+  lg: 48,
+  xl: 56,
+};
+
+const Input: React.FC<IInputProps> = ({ label, value, placeholder, onChange, className = '' }) => {
   return (
-    <div className={`${styles.formControl} form-control`}>
-      {label && <label className={styles.label}>{label}</label>}
-      <input className={styles.input} type="text" value={value} {...rest} />
+    <div css={inputStyles()} className={`${className} input-container`}>
+      {label && <label>{label}</label>}
+      <input
+        type="text"
+        className="input"
+        value={value as string}
+        placeholder={placeholder}
+        onChange={onChange}
+      />
     </div>
   );
 };
