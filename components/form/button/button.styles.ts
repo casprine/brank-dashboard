@@ -8,12 +8,14 @@ const generateStyles: StyleFunction = () => {
     borderRadius: '6px',
     border: '0',
     margin: '20px 0',
-    backgroundImage: 'var(--btn-background)',
+    backgroundColor: theme.colors.primary,
+    boxShadow: theme.shadows.lg,
+    cursor: 'pointer',
+    outline: 'none',
+    transition: 'all 0.2s ease-in-out',
 
-    '&:focus': {
+    '&:hover': {
       boxShadow: '0px 0px 0px 4px rgb(5 150 105 / 20%)',
-      borderColor: theme.colors.primary,
-      backgroundColor: theme.colors.white,
     },
   };
 };

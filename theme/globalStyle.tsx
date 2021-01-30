@@ -57,7 +57,7 @@ const GlobalStyles = () => {
         }
 
         #nprogress .bar {
-          background: #29d;
+          background: ${theme.colors.primary};
 
           position: fixed;
           z-index: 1031;

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Button, Input, Checkbox } from 'components/form';
 import { Stack, Flex } from 'components/layout';
 import { Layout } from 'components/common';
+import theme from 'theme';
 
 const SignupPage = () => {
   return (
@@ -74,7 +75,7 @@ const SignupPage = () => {
 
             <div className="row">
               <Button>
-                <p className="success-btn-text">Get started</p>
+                <p className="btn-text">Get started</p>
               </Button>
             </div>
           </Stack>
@@ -84,8 +85,11 @@ const SignupPage = () => {
   );
 };
 
-function generateStyles() {
+export function generateStyles() {
   return {
+    svg: {
+      marginBottom: '20px',
+    },
     '.logo-container': {
       padding: '0 50px',
       marginBottom: '30px',
@@ -101,7 +105,7 @@ function generateStyles() {
     },
     '.info a': {
       textDecoration: 'none',
-      color: 'var(--primary-green)',
+      color: theme.colors.primary,
       fontSize: '14px',
     },
 
@@ -118,6 +122,13 @@ function generateStyles() {
       '.input-container': {
         width: '48%',
       },
+    },
+
+    '.btn-text': {
+      color: 'white',
+      textShadow: '1px 1px 1px var(--primary-green)',
+      fontWeight: 500,
+      fontSize: '17px',
     },
   };
 }

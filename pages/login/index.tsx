@@ -3,11 +3,13 @@ import Image from 'next/image';
 
 import { Button, Input } from 'components/form';
 import { Layout } from 'components/common';
+import { generateStyles } from 'pages/signup';
+import { Stack } from 'components/layout';
 
 const LoginPage = () => {
   return (
     <Layout title="Brank">
-      <div className="container">
+      <div className="container" css={generateStyles()}>
         <div className="auth-container">
           <div className="logo-container">
             <Image src="/images/brank-logo.png" alt="brank-logo" width={60} height={60} />
@@ -28,7 +30,7 @@ const LoginPage = () => {
             />
           </svg>
 
-          <div className="form">
+          <Stack className="form">
             <div className="row">
               <Input value="" onChange={() => {}} label="Email" placeholder="tim@apple.com" />
             </div>
@@ -48,7 +50,7 @@ const LoginPage = () => {
                 <p className="success-btn-text">Login</p>
               </Button>
             </div>
-          </div>
+          </Stack>
         </div>
       </div>
     </Layout>
