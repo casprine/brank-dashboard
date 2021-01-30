@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { CSSObject } from 'styled-components';
 import { Flex } from 'components/layout';
 import theme from 'theme';
 import { InputSize } from 'types';
+import { CSSObject } from '@emotion/react';
 import { IInputProps } from 'types';
 import generateStyles from './checkbox.styles';
 
@@ -32,8 +32,8 @@ const Checkbox: React.FC<IProps> = ({
   className,
   color = theme.colors.primary,
   isChecked: checkedStatus,
-  size = 'sm',
-  hasBorder = false,
+  size = 'md',
+  hasBorder = true,
   customLabel,
 }) => {
   const [isChecked, setChecked] = useState(checkedStatus);
@@ -41,23 +41,22 @@ const Checkbox: React.FC<IProps> = ({
   const inputSize = tagSizeStyles[size];
 
   return (
-    <div css={generateStyles({ size: inputSize })}>
-      <input
-        onChange={() => {
-          setChecked(!isChecked);
-          onChange && onChange({ target: { name, value: !isChecked } });
-        }}
-        type="checkbox"
-        name={id}
-        id={id}
-        checked={isChecked}
-      />
+    <div css={generateStyles({ size: inputSize, hasBorder, color })} className={className}>
+      <input type="checkbox" name={id} id={id} checked={isChecked} />
 
-      <label style={{ display: 'flex' }} htmlFor={id}>
-        <Flex className="custom-box" ai="center" jc="center">
+      <label style={{ display: 'flex', alignContent: 'center' }} htmlFor={id}>
+        <Flex
+          className="custom-box"
+          ai="center"
+          jc="center"
+          onClick={() => {
+            setChecked(!isChecked);
+            onChange && onChange({ target: { name, value: !isChecked } });
+          }}
+        >
           <div className="check"></div>
         </Flex>
-        {customLabel ? <>{customLabel}</> : <div className="label">{label}</div>}
+        <div className="label">{customLabel || label}</div>
       </label>
     </div>
   );

@@ -4,8 +4,6 @@ import theme from 'theme';
 const generateStyles: StyleFunction = (props: any) => {
   const { size } = props;
 
-  console.log({ size });
-
   return {
     position: 'relative',
 
@@ -26,9 +24,18 @@ const generateStyles: StyleFunction = (props: any) => {
       height: size,
       width: size,
       background: theme.colors.white,
-      border: props?.hasBorder ? `2px solid ${theme.colors.gray[400]}` : 'none',
+      border: props?.hasBorder ? `1px solid ${theme.colors.gray[400]}` : 'none',
       borderRadius: size * 0.25,
-      marginRight: '10px',
+      marginRight: 'auto',
+      transition: 'all 0.2s ease-in-out',
+
+      '&:hover': {
+        boxShadow: '0px 0px 0px 4px rgb(5 150 105 / 20%)',
+      },
+
+      '&:focus': {
+        boxShadow: '0px 0px 0px 4px rgb(5 150 105 / 20%)',
+      },
 
       '.check': {
         height: 5 + size * 0.1,
@@ -44,6 +51,7 @@ const generateStyles: StyleFunction = (props: any) => {
       fontSize: 13,
       fontFamily: theme.typography.fonts.semibold,
       color: theme.colors.gray[500],
+      width: '92%',
     },
 
     'input:checked + label .custom-box': {

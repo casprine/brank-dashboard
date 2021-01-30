@@ -47,7 +47,7 @@ const LoginPage = () => {
 
             <div className="row">
               <Button>
-                <p className="success-btn-text">Login</p>
+                <p className="btn-text">Login</p>
               </Button>
             </div>
           </Stack>

@@ -16,6 +16,7 @@ const generateStyles: StyleFunction = () => {
       outline: 'none',
       boxShadow: theme.shadows.xs,
       backgroundColor: theme.colors.grey,
+
       '&:focus': {
         boxShadow: '0px 0px 0px 4px rgb(5 150 105 / 20%)',
         borderColor: theme.colors.primary,

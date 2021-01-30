@@ -130,6 +130,13 @@ export function generateStyles() {
       fontWeight: 500,
       fontSize: '17px',
     },
+
+    '.terms-checkbox': {
+      fontSize: 14,
+      lineHeight: '18px',
+
+      a: { fontWeight: 500, color: theme.colors.primary, textDecoration: 'underline' },
+    },
   };
 }
 
