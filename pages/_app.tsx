@@ -1,10 +1,24 @@
-// import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app';
-import './global.css';
+import NProgress from 'nprogress';
+import router from 'next/router';
+import GlobalStyles from 'theme/globalStyle';
+import { ThemeProvider } from 'styled-components';
 import 'normalize.css';
 
+import theme from 'theme';
+
 function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
+  );
 }
 
 export default App;
+
+router.events.on('routeChangeStart', () => NProgress.start());
+router.events.on('routeChangeComplete', () => NProgress.done());

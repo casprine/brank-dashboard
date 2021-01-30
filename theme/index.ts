@@ -1,3 +1,5 @@
+import { DefaultTheme } from 'styled-components';
+
 import colors from './colors';
 import gradients from './gradients';
 import presets from './presets';
@@ -6,8 +8,7 @@ import shadows from './shadows';
 import animations from './animations';
 import breakpoints from './breakpoints';
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {
+const theme: DefaultTheme = {
   colors,
   gradients,
   presets,
@@ -16,3 +17,5 @@ export default {
   animations,
   breakpoints,
 };
+
+export default theme;

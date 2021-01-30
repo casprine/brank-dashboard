@@ -3,7 +3,7 @@ const colors = {
   current: 'currentColor',
   black: '#000',
   white: '#fff',
-  primary: '#4338CA',
+  primary: '#059669',
   secondary: '#18181B',
   grey: '#F5F8F9',
 
