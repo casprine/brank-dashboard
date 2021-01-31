@@ -3,6 +3,7 @@ import { Flex, Stack } from 'components/layout';
 import { sideBarStyles } from './sidebar.styles';
 import MenuItem from './MenuItem';
 import { IRoute } from 'types';
+import { useRouter } from 'next/router';
 
 const routes: IRoute[] = [
   { label: 'Home', path: '/', icon: 'columns' },
@@ -15,6 +16,7 @@ const routes: IRoute[] = [
 ];
 
 const Sidebar = () => {
+  const router = useRouter();
   return (
     <Flex css={sideBarStyles()} stack>
       <Flex ai="center" jc="space-between" className="header">
@@ -34,8 +36,9 @@ const Sidebar = () => {
       </div>
 
       <Flex className="footer" stack>
-        <MenuItem label="What's New" icon="gift" />
-        <MenuItem label="Settings" icon="cog" />
+        <MenuItem pathPrefix="/app" label="What's New" icon="gift" />
+        <MenuItem pathPrefix="/app" label="Settings" icon="cog" />
+        <MenuItem label="Logout" icon="sign-out-alt" action={() => router.push('/login')} />
       </Flex>
     </Flex>
   );

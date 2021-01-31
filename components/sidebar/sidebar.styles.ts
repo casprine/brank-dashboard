@@ -55,6 +55,7 @@ const menuItemStyles: StyleFunction = () => {
     padding: '10px',
     borderRadius: 6,
     transition: 'all 300ms',
+    width: '100%',
 
     ':hover': {
       backgroundColor: theme.colors.white,

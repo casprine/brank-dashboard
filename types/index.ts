@@ -44,4 +44,5 @@ export interface IRoute {
   icon?: string;
   path?: string;
   pathPrefix?: string;
+  action?: () => void;
 }

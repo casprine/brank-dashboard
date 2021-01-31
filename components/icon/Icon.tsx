@@ -89,6 +89,7 @@ import {
   faRocketLaunch,
   faBox,
   faChartBar,
+  faSignOutAlt,
 } from '@fortawesome/pro-duotone-svg-icons';
 import {
   faPlusCircle,
@@ -101,7 +102,7 @@ import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontaw
 export function startIconLibrary(): void {
   library.add(
     faChartBar,
-
+    faSignOutAlt,
     faBox,
     faRocketLaunch,
     faExternalLinkSquare,
