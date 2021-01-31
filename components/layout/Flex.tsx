@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSObject } from '@emotion/react';
+import { css, CSSObject } from '@emotion/react';
 import { DefaultHTMLProps, funcWithArgs } from 'types';
 
 export interface IFlex {
@@ -34,7 +34,7 @@ const Flex: React.FC<IFlex & DefaultHTMLProps<HTMLDivElement>> = ({
       onClick={onClick}
       onBlur={onBlur}
       className={className}
-      style={{
+      css={{
         display: 'flex',
         flexDirection: stack ? 'column' : 'row',
         alignItems: ai,
