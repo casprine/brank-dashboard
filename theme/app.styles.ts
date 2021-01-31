@@ -3,7 +3,6 @@ import theme from 'theme';
 
 const generateStyles: StyleFunction = () => {
   return {
-    outline: '1px solid red',
     minHeight: '100vh',
     display: 'grid',
     gridTemplateColumns: '320px 1fr',
