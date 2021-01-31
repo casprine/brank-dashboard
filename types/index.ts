@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { CSSObject } from 'styled-components';
+import { CSSObject } from '@emotion/react';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;

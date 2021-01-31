@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { jsx } from '@emotion/react';
 
 // components
 import Flex, { IFlex } from './Flex';
