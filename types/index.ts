@@ -38,3 +38,10 @@ export interface IInputProps {
   min?: number;
   isRequired?: boolean;
 }
+
+export interface IRoute {
+  label?: string;
+  icon?: string;
+  path?: string;
+  pathPrefix?: string;
+}

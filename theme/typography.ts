@@ -1,6 +1,3 @@
-const baseFontStack =
-  '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
-
 const typography = {
   letterSpacings: {
     tighter: '-0.05em',
@@ -31,15 +28,12 @@ const typography = {
     black: 900,
   },
   fonts: {
-    heading: `swipe bold, ${baseFontStack}`,
-    body: `swipe medium, ${baseFontStack} `,
-    mono: `SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
-    regular: `swipe regular, ${baseFontStack}`,
-    medium: `swipe medium, ${baseFontStack}`,
-    semibold: `swipe semi, ${baseFontStack}`,
-    bold: `swipe bold, ${baseFontStack}`,
-    heavy: `swipe heavy, ${baseFontStack} `,
-    rounded: `swipe rounded, ${baseFontStack}`,
+    header: `'Merriweather', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;`,
+    regular: `'Griphik web', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;`,
+    sans: `'Work Sans', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;`,
   },
   fontSizes: {
     xs: '0.75rem',

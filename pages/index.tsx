@@ -2,7 +2,8 @@ import { Layout } from 'components/common';
 import { Flex, Stack } from 'components/layout';
 import Image from 'next/image';
 import { Button, Input } from 'components/form';
-import theme from 'theme';
+
+import Icon from 'components/icon/Icon';
 
 const IndexPage = () => (
   <Layout title="Brank">
@@ -16,6 +17,8 @@ const IndexPage = () => (
           <Button>
             <p>Join</p>
           </Button>
+
+          <Icon icon={['fal', 'coffee']} />
         </Stack>
       </Stack>
     </Flex>
@@ -25,11 +28,6 @@ const IndexPage = () => (
 function generateStyles() {
   return {
     height: '100vh',
-    // outline: '1px solid red',
-
-    // '*': {
-    //   outline: '1px solid red',
-    // },
 
     '.wrapper': {
       width: '100%',

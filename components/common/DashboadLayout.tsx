@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import Head from 'next/head';
 import { dashboardStyles } from './common.styles';
+import Sidebar from 'components/sidebar/Sidebar';
 
 type IProps = {
   children?: ReactNode;
@@ -14,9 +15,7 @@ const DashboardLayout: React.FC<IProps> = ({ children }) => {
       </Head>
 
       <main css={dashboardStyles}>
-        <div className="sidebar">
-          <p>Sidebar</p>
-        </div>
+        <Sidebar />
 
         <div className="page-container">{children}</div>
       </main>
