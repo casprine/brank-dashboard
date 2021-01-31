@@ -7,9 +7,13 @@ const generateStyles: StyleFunction = (props: any) => {
   return {
     position: 'relative',
 
+    // '*': {
+    //   outline: '1px solid red',
+    // },
+
     label: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       cursor: 'pointer',
     },
 
@@ -28,7 +32,7 @@ const generateStyles: StyleFunction = (props: any) => {
       borderRadius: size * 0.25,
       marginRight: 'auto',
       transition: 'all 0.2s ease-in-out',
-
+      marginTop: 4,
       '&:hover': {
         boxShadow: '0px 0px 0px 4px rgb(5 150 105 / 20%)',
       },

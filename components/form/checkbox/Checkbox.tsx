@@ -44,7 +44,7 @@ const Checkbox: React.FC<IProps> = ({
     <div css={generateStyles({ size: inputSize, hasBorder, color })} className={className}>
       <input type="checkbox" name={id} id={id} checked={isChecked} />
 
-      <label style={{ display: 'flex', alignContent: 'center' }} htmlFor={id}>
+      <label htmlFor={id}>
         <Flex
           className="custom-box"
           ai="center"
