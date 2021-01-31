@@ -53,7 +53,7 @@ const generateStyles: StyleFunction = (props: any) => {
 
     '.label': {
       fontSize: 13,
-      fontFamily: theme.typography.fonts.semibold,
+      fontFamily: theme.typography.fonts.regular,
       color: theme.colors.gray[500],
       width: '92%',
     },

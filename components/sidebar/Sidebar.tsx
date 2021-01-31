@@ -6,12 +6,12 @@ import { IRoute } from 'types';
 
 const routes: IRoute[] = [
   { label: 'Home', path: '/', icon: 'columns' },
-  { label: 'Apps', path: '/apps', icon: 'times' },
+  { label: 'Apps', path: '/apps', icon: 'rocket-launch' },
   { label: 'Customers', path: '/apps', icon: 'user-crown' },
   { label: 'Payment', path: '/apps', icon: 'wallet' },
-  { label: 'Products', path: '/apps', icon: 'badge-dollar' },
-  { label: 'Developers', path: '/apps', icon: 'times' },
-  { label: 'Reports', path: '/apps', icon: 'external-link-square' },
+  { label: 'Products', path: '/apps', icon: 'box' },
+  { label: 'Developers', path: '/apps', icon: 'external-link-square' },
+  { label: 'Reports', path: '/apps', icon: 'chart-bar' },
 ];
 
 const Sidebar = () => {
@@ -25,9 +25,6 @@ const Sidebar = () => {
             <p className="username">Montgomery Hayton</p>
           </Stack>
         </Flex>
-        {/* <Flex ai="center" jc="center" className="expand-icon">
-          <Icon icon={['fad', 'exchange-alt']} color={theme.colors.gray[700]} />
-        </Flex> */}
       </Flex>
 
       <div className="menu-links">

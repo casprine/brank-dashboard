@@ -13,6 +13,7 @@ const dashboardStyles: StyleFunction = () => {
       backgroundColor: theme.colors.white,
       borderTopLeftRadius: 6,
       boxShadow: theme.shadows.xl,
+      padding: '30px',
     },
   };
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css, CSSObject } from '@emotion/react';
+import { CSSObject } from '@emotion/react';
 import { DefaultHTMLProps, funcWithArgs } from 'types';
 
 export interface IFlex {

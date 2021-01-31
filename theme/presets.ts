@@ -1,4 +1,4 @@
-import { CSSObject } from '@emotion/core';
+import { CSSObject } from '@emotion/react';
 
 const rounded: CSSObject = { borderRadius: '50%' };
 
