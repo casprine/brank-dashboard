@@ -12,7 +12,7 @@ export const inputSizes = {
 };
 
 const Input: React.FC<IInputProps & InputPropsType> = ({
-  type,
+  type = '',
   label,
   value,
   placeholder,
@@ -23,7 +23,6 @@ const Input: React.FC<IInputProps & InputPropsType> = ({
     <div css={inputStyles()} className={`${className} input-container`}>
       {label && <label>{label}</label>}
       <input
-        type="text"
         className="input"
         value={value as string}
         placeholder={placeholder}
