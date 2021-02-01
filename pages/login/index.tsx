@@ -5,8 +5,18 @@ import { Button, Input } from 'components/form';
 import { Layout } from 'components/common';
 import { generateStyles } from 'pages/signup';
 import { Stack } from 'components/layout';
+import { useForm } from 'hooks';
 
 const LoginPage = () => {
+  const form = useForm({
+    fields: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const { inputState, onBlur, onChange, errors } = form;
+
   return (
     <Layout title="Brank">
       <div className="container" css={generateStyles()}>
@@ -32,14 +42,25 @@ const LoginPage = () => {
 
           <Stack className="form">
             <div className="row">
-              <Input value="" onChange={() => {}} label="Email" placeholder="tim@apple.com" />
+              <Input
+                value={inputState.email}
+                onChange={onChange}
+                onBlur={onBlur}
+                error={errors.email}
+                label="Email"
+                name="email"
+                placeholder="tim@apple.com"
+              />
             </div>
 
             <div className="row">
               <Input
-                value=""
-                onChange={() => {}}
+                value={inputState.password}
+                onChange={onChange}
+                onBlur={onBlur}
+                error={errors.password}
                 type="password"
+                name="password"
                 label="Password"
                 placeholder="••••••••"
               />

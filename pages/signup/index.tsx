@@ -5,8 +5,21 @@ import { Button, Input, Checkbox } from 'components/form';
 import { Stack, Flex } from 'components/layout';
 import { Layout } from 'components/common';
 import theme from 'theme';
+import { useForm } from 'hooks';
 
 const SignupPage = () => {
+  const form = useForm({
+    fields: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      companyName: '',
+      password: '',
+    },
+  });
+
+  const { inputState, onBlur, onChange, errors } = form;
+
   return (
     <Layout title="Brank">
       <div className="container" css={generateStyles()}>
@@ -34,22 +47,57 @@ const SignupPage = () => {
 
           <Stack className="form">
             <Flex className="name-input-container">
-              <Input value="" onChange={() => {}} label="First Name" placeholder="Tim" />
-              <Input value="" onChange={() => {}} label="Last Name" placeholder="Apple" />
+              <Input
+                value={inputState.firstName}
+                onChange={onChange}
+                onBlur={onBlur}
+                name="firstName"
+                error={errors.firstName}
+                label="First Name"
+                placeholder="Tim"
+              />
+              <Input
+                value={inputState.lastName}
+                onChange={onChange}
+                onBlur={onBlur}
+                name="lastName"
+                error={errors.lastName}
+                label="Last Name"
+                placeholder="Apple"
+              />
             </Flex>
 
             <div className="row">
-              <Input value="" onChange={() => {}} label="Email" placeholder="tim@apple.com" />
-            </div>
-
-            <div className="row">
-              <Input value="" onChange={() => {}} label="Company Name" placeholder="Apple Inc." />
+              <Input
+                value={inputState.email}
+                onChange={onChange}
+                onBlur={onBlur}
+                name="email"
+                error={errors.email}
+                label="Email"
+                placeholder="tim@apple.com"
+              />
             </div>
 
             <div className="row">
               <Input
-                value=""
-                onChange={() => {}}
+                value={inputState.companyName}
+                onChange={onChange}
+                onBlur={onBlur}
+                name="companyName"
+                error={errors.companyName}
+                label="Company Name"
+                placeholder="Apple Inc."
+              />
+            </div>
+
+            <div className="row">
+              <Input
+                name="password"
+                error={errors.password}
+                onChange={onChange}
+                onBlur={onBlur}
+                value={inputState.password}
                 type="password"
                 label="Password"
                 placeholder="••••••••"

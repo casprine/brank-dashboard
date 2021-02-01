@@ -46,3 +46,5 @@ export interface IRoute {
   pathPrefix?: string;
   action?: () => void;
 }
+
+export type Dict<T = any> = Record<string, T>;

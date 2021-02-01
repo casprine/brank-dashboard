@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios, { AxiosPromise } from 'axios';
 
 // our network system powered by the Olympian of god of transport
 
 const baseUrl: string = 'https://brank-core.herokuapp.com';
 
-interface IRequestData {}
+// interface IRequestData {}
 
 interface IHermes {
   data?: any;
@@ -12,7 +12,7 @@ interface IHermes {
   method?: 'POST' | 'GET' | 'PUT';
 }
 
-export function hermes({ data, url, method = 'POST' }: IHermes) {
+export function hermes({ data, url, method = 'POST' }: IHermes): AxiosPromise {
   const requestURL: string = `${baseUrl}${url}`;
 
   return axios({
@@ -23,7 +23,7 @@ export function hermes({ data, url, method = 'POST' }: IHermes) {
   });
 }
 
-export function guardHermes({ data, url, method }: IHermes) {
+export function guardHermes({ data, url, method }: IHermes): AxiosPromise {
   const token = localStorage.getItem('token');
   const requestURL: string = `${baseUrl}${url}`;
 

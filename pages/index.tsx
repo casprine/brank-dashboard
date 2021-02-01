@@ -3,8 +3,6 @@ import { Flex, Stack } from 'components/layout';
 import Image from 'next/image';
 import { Button, Input } from 'components/form';
 
-import Icon from 'components/icon/Icon';
-
 const IndexPage = () => (
   <Layout title="Brank">
     <Flex css={generateStyles()}>
@@ -17,8 +15,6 @@ const IndexPage = () => (
           <Button>
             <p>Join</p>
           </Button>
-
-          <Icon icon={['fal', 'coffee']} />
         </Stack>
       </Stack>
     </Flex>

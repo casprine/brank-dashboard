@@ -18,17 +18,28 @@ const Input: React.FC<IInputProps & InputPropsType> = ({
   placeholder,
   onChange,
   className = '',
+  onBlur,
+  name,
+  error,
 }) => {
   return (
-    <div css={inputStyles()} className={`${className} input-container`}>
+    <div
+      css={inputStyles({
+        hasError: error ? true : false,
+      })}
+      className={`${className} input-container`}
+    >
       {label && <label>{label}</label>}
       <input
         className="input"
         value={value as string}
         placeholder={placeholder}
         onChange={onChange}
+        onBlur={onBlur}
         type={type}
+        name={name}
       />
+      {error && <span className="error-message">{error}</span>}
     </div>
   );
 };
