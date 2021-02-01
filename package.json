@@ -17,6 +17,7 @@
     "@fortawesome/pro-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@types/nprogress": "^0.2.0",
+    "axios": "^0.21.1",
     "framer-motion": "^3.2.2-rc.1",
     "next": "^10.0.4",
     "normalize.css": "^8.0.1",
