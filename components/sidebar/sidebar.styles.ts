@@ -7,11 +7,17 @@ const sideBarStyles: StyleFunction = () => {
 
     '.header': {
       marginBottom: '4.5rem',
+      backgroundColor: 'white',
+      boxShadow: theme.shadows.md,
+      padding: '12px',
+      borderRadius: 6,
+      cursor: 'default',
     },
 
     '.company-logo': {
       boxShadow: theme.shadows.lg,
       borderRadius: 6,
+      cursor: 'default',
     },
 
     '.footer': {
