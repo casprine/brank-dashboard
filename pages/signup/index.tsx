@@ -1,24 +1,45 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { Button, Input, Checkbox } from 'components/form';
+import { Button, Input, Checkbox, Form } from 'components/form';
 import { Stack, Flex } from 'components/layout';
 import { Layout } from 'components/common';
 import theme from 'theme';
 import { useForm } from 'hooks';
+import { useState } from 'react';
+import { hermes } from 'utils/hermes';
 
 const SignupPage = () => {
+  const [showLoadingIndicator, setShowLoadingIndicator] = useState(false);
+
   const form = useForm({
     fields: {
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       email: '',
-      companyName: '',
+      company_name: '',
       password: '',
     },
   });
 
   const { inputState, onBlur, onChange, errors } = form;
+
+  async function createAccount(_: any, inputState: any) {
+    setShowLoadingIndicator(true);
+
+    try {
+      const response = await hermes({
+        url: '/clients',
+        data: inputState,
+      });
+
+      console.log({ response });
+    } catch (error) {
+      console.log([error]);
+    } finally {
+      setShowLoadingIndicator(false);
+    }
+  }
 
   return (
     <Layout title="Brank">
@@ -45,88 +66,90 @@ const SignupPage = () => {
             />
           </svg>
 
-          <Stack className="form">
-            <Flex className="name-input-container">
-              <Input
-                value={inputState.firstName}
-                onChange={onChange}
-                onBlur={onBlur}
-                name="firstName"
-                error={errors.firstName}
-                label="First Name"
-                placeholder="Tim"
-              />
-              <Input
-                value={inputState.lastName}
-                onChange={onChange}
-                onBlur={onBlur}
-                name="lastName"
-                error={errors.lastName}
-                label="Last Name"
-                placeholder="Apple"
-              />
-            </Flex>
+          <Form form={form} onSubmit={createAccount}>
+            <Stack className="form">
+              <Flex className="name-input-container">
+                <Input
+                  value={inputState.first_name}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  name="first_name"
+                  error={errors.first_name}
+                  label="First Name"
+                  placeholder="Tim"
+                />
+                <Input
+                  value={inputState.last_name}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  name="last_name"
+                  error={errors.last_name}
+                  label="Last Name"
+                  placeholder="Apple"
+                />
+              </Flex>
 
-            <div className="row">
-              <Input
-                value={inputState.email}
-                onChange={onChange}
-                onBlur={onBlur}
-                name="email"
-                error={errors.email}
-                label="Email"
-                placeholder="tim@apple.com"
-              />
-            </div>
+              <div className="row">
+                <Input
+                  value={inputState.email}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  name="email"
+                  error={errors.email}
+                  label="Email"
+                  placeholder="tim@apple.com"
+                />
+              </div>
 
-            <div className="row">
-              <Input
-                value={inputState.companyName}
-                onChange={onChange}
-                onBlur={onBlur}
-                name="companyName"
-                error={errors.companyName}
-                label="Company Name"
-                placeholder="Apple Inc."
-              />
-            </div>
+              <div className="row">
+                <Input
+                  value={inputState.company_name}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  name="company_name"
+                  error={errors.company_name}
+                  label="Company Name"
+                  placeholder="Apple Inc."
+                />
+              </div>
 
-            <div className="row">
-              <Input
-                name="password"
-                error={errors.password}
-                onChange={onChange}
-                onBlur={onBlur}
-                value={inputState.password}
-                type="password"
-                label="Password"
-                placeholder="••••••••"
-              />
-            </div>
+              <div className="row">
+                <Input
+                  name="password"
+                  error={errors.password}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={inputState.password}
+                  type="password"
+                  label="Password"
+                  placeholder="••••••••"
+                />
+              </div>
 
-            <div className="terms-checkbox">
-              <Checkbox
-                customLabel={
-                  <p>
-                    By signing up you agree to the{' '}
-                    <Link href="/login">
-                      <a>Terms of Use</a>
-                    </Link>{' '}
-                    and
-                    <Link href="/login">
-                      <a> Privacy Policy</a>
-                    </Link>
-                  </p>
-                }
-              />
-            </div>
+              <div className="terms-checkbox">
+                <Checkbox
+                  customLabel={
+                    <p>
+                      By signing up you agree to the{' '}
+                      <Link href="/login">
+                        <a>Terms of Use</a>
+                      </Link>{' '}
+                      and
+                      <Link href="/login">
+                        <a> Privacy Policy</a>
+                      </Link>
+                    </p>
+                  }
+                />
+              </div>
 
-            <div className="row">
-              <Button>
-                <p className="btn-text">Get started</p>
-              </Button>
-            </div>
-          </Stack>
+              <div className="row">
+                <Button size="lg">
+                  <p className="btn-text">Get started</p>
+                </Button>
+              </div>
+            </Stack>
+          </Form>
         </div>
       </div>
     </Layout>

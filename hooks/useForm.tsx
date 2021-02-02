@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { resetObject, objectHasProperty, isEqual } from 'utils/helpers';
+import { resetObject, objectHasProperty, isEqual, objectKeys } from 'utils/helpers';
 import validators from 'utils/validations';
 // import useTraceUpdate from './useTraceUpdate';
 type formFields = Record<string, any>;
@@ -18,7 +18,7 @@ export interface IUseForm {
   onBlur(e?: any): void;
   initializeForm(form: formFields): void;
   setInputState(input: any): void;
-  // validateFields(): void;
+  validateFields(): void;
   resetForm(): void;
   resetFormToInitialState(): void;
   updateInitialState(state: any): void;
@@ -71,12 +71,23 @@ const useForm = (config: IFormConfig): IUseForm => {
     _setErrors(name, error);
   }, []);
 
+  // utitlity function to validate all fields before submitting a form.
+  const validateFields = React.useCallback(() => {
+    const fields = objectKeys(inputState);
+    fields.forEach((field) => {
+      if (optional?.includes(field as string)) {
+        return;
+      }
+      validateField({ target: { name: field } });
+    });
+    return latestErrorState.current;
+  }, [optional, inputState, validateField]);
+
   // onchange handler
   const onChange = React.useCallback(
     (e: any) => {
       const { name, value } = e.target;
 
-      console.log({ [name]: value });
       _setInputState(name, value);
     },
     [validateField, _setInputState],
@@ -125,6 +136,7 @@ const useForm = (config: IFormConfig): IUseForm => {
     inputState,
     setInputField: _setInputState,
     setInputState,
+    validateFields,
   };
 };
 

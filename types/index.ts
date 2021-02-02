@@ -48,3 +48,14 @@ export interface IRoute {
 }
 
 export type Dict<T = any> = Record<string, T>;
+
+export type buttonAppearance =
+  | 'primary'
+  | 'outline'
+  | 'secondary'
+  | 'ghost'
+  | 'disabled'
+  | 'warning'
+  | 'success';
+export type buttonSizes = 'xs' | 'sm' | 'md' | 'lg';
+export type ButtonType = 'submit' | 'reset' | 'button';

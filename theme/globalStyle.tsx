@@ -14,7 +14,7 @@ const GlobalStyles = () => {
         }
 
         @font-face {
-          font-family: 'Griphik web';
+          font-family: 'Graphik web';
           src: url('/fonts/graphik-regular-web.woff2') format('woff2');
           font-weight: 1 1000;
           font-display: block;
@@ -24,7 +24,7 @@ const GlobalStyles = () => {
         :root {
           --header-font: 'Merriweather', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
             Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-          --regular-font: 'Griphik web', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          --regular-font: 'Graphik web', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
             Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
           --btn-background: linear-gradient(180deg, #10b981, #059669);
         }

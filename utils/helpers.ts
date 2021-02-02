@@ -64,3 +64,14 @@ export function camelCaseToReadable(value: string) {
   var result = value.replace(/([A-Z])/g, ' $1');
   return result.split(' ').join(' ').toLowerCase();
 }
+
+export function hasError(object: Object) {
+  if (!object) {
+    return;
+  }
+  const values = Object.values(object).filter((value) => {
+    return value !== '' && value !== undefined;
+  });
+
+  return values.length > 0;
+}

@@ -2,7 +2,7 @@ import axios, { AxiosPromise } from 'axios';
 
 // our network system powered by the Olympian of god of transport
 
-const baseUrl: string = 'https://brank-core.herokuapp.com';
+const baseUrl: string = 'http://brank-core.herokuapp.com';
 
 // interface IRequestData {}
 
@@ -19,7 +19,6 @@ export function hermes({ data, url, method = 'POST' }: IHermes): AxiosPromise {
     data,
     url: requestURL,
     method,
-    withCredentials: true,
   });
 }
 
@@ -31,7 +30,6 @@ export function guardHermes({ data, url, method }: IHermes): AxiosPromise {
     method,
     url: requestURL,
     data: data,
-    withCredentials: true,
     headers: { Authorization: `Bearer ${token}` },
   });
 }
