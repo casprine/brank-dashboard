@@ -22,7 +22,7 @@ const generateStyles: StyleFunction = ({ hasError }) => {
       '&:focus': {
         boxShadow: hasError
           ? '0px 0px 0px 4px rgb(251 146 60 / 20%)'
-          : '0px 0px 0px 4px rgb(5 150 105 / 20%)',
+          : '0px 0px 0px 4px rgb(0 0 0 / 20%)',
         backgroundColor: theme.colors.white,
         borderColor: hasError ? theme.colors.orange[400] : theme.colors.primary,
       },

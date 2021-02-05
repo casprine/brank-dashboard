@@ -62,7 +62,7 @@ export function hexToRGBA(h: string, a?: string) {
 
 export function camelCaseToReadable(value: string) {
   var result = value.replace(/([A-Z])/g, ' $1');
-  return result.split(' ').join(' ').toLowerCase();
+  return result.split('_').join(' ').toLowerCase();
 }
 
 export function hasError(object: Object) {

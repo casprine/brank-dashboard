@@ -3,8 +3,8 @@ const colors = {
   current: 'currentColor',
   black: '#000',
   white: '#fff',
-  primary: '#059669',
-  secondary: '#18181B',
+  secondary: '#059669',
+  primary: '#18181B',
   grey: '#F5F8F9',
 
   whiteAlpha: {

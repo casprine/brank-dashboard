@@ -1,31 +1,25 @@
 import { ReactNode } from 'react';
-import { ButtonProps } from 'types';
 import Link from 'next/link';
 import { CSSObject } from '@emotion/react';
 
 import Loader from 'components/Loader/Loader';
 import { buttonAppearance, ButtonType, buttonSizes } from 'types';
 import theme from 'theme';
-import generateStyles from './button.styles';
 
 const buttonDefaults: CSSObject = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontFamily: theme.typography.fonts.sans,
-  transition: 'all .2s',
-  flexShrink: 0,
-  border: 'none',
-  fontWeight: 600,
-
-  '&:focus': {
-    outline: 'none',
-    boxShadow: `0 0 7px ${theme.colors.indigo[300]}`,
-    border: `2px solid ${theme.colors.indigo[400]}`,
-  },
+  height: '50px',
+  width: '100%',
+  borderRadius: '6px',
+  border: '0',
+  margin: '20px 0',
+  backgroundColor: theme.colors.primary,
+  boxShadow: theme.shadows.md,
+  cursor: 'pointer',
+  outline: 'none',
+  transition: 'all 0.2s ease-in-out',
 
   '&:hover': {
-    cursor: 'pointer',
+    boxShadow: '0px 0px 0px 4px rgb(0 0 0 / 20%)',
   },
 };
 

@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-
 import { Button, Input, Checkbox, Form } from 'components/form';
 import { Stack, Flex } from 'components/layout';
 import { Layout } from 'components/common';
@@ -144,7 +143,7 @@ const SignupPage = () => {
               </div>
 
               <div className="row">
-                <Button size="lg">
+                <Button size="lg" isLoading={showLoadingIndicator}>
                   <p className="btn-text">Get started</p>
                 </Button>
               </div>
@@ -176,7 +175,7 @@ export function generateStyles() {
     },
     '.info a': {
       textDecoration: 'none',
-      color: theme.colors.primary,
+      color: theme.colors.secondary,
       fontSize: '14px',
     },
 

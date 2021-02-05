@@ -56,6 +56,7 @@ export type buttonAppearance =
   | 'ghost'
   | 'disabled'
   | 'warning'
-  | 'success';
+  | 'success'
+  | 'error';
 export type buttonSizes = 'xs' | 'sm' | 'md' | 'lg';
 export type ButtonType = 'submit' | 'reset' | 'button';
