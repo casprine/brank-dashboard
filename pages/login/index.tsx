@@ -21,6 +21,8 @@ const LoginPage = () => {
   const { inputState, onBlur, onChange, errors } = form;
 
   async function loginUser(_: any, inputState: any) {
+    setShowLoadingIndicator(true);
+
     try {
       const response = await hermes({
         url: '/clients',
@@ -29,7 +31,7 @@ const LoginPage = () => {
 
       console.log({ response });
     } catch (error) {
-      console.log([error]);
+      console.log(error.message);
     } finally {
       setShowLoadingIndicator(false);
     }
