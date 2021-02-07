@@ -140,7 +140,6 @@ const Button: React.FC<IButton> = ({
   if (path) {
     return (
       <Link
-        id={id}
         css={{
           ...buttonStyles[isDisabled ? 'disabled' : appearance],
           ...buttonSizesStyle[size],
@@ -149,10 +148,11 @@ const Button: React.FC<IButton> = ({
           display: 'flex',
           justifyContent: align === 'center' ? 'center' : 'flex-start',
         }}
-        className={className}
         href={path as string}
       >
         <span
+          id={id}
+          className={className}
           css={{
             width: '100%',
             textAlign: align === 'center' ? 'center' : 'left',
