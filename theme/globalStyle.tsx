@@ -8,17 +8,18 @@ const GlobalStyles = () => {
         @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,300;1,300&display=swap');
 
         @font-face {
-          font-family: 'Merriweather';
-          src: url('/fonts/Merriweather.ttf');
-          font-display: swap;
-        }
-
-        @font-face {
           font-family: 'Graphik web';
           src: url('/fonts/graphik-regular-web.woff2') format('woff2');
           font-weight: 1 1000;
           font-display: block;
           unicode-range: U+007f-ffff;
+        }
+
+        @font-face {
+          font-family: 'Graphik bold';
+          src: url('/fonts/graphik-bold-web.woff2') format('woff2');
+          font-weight: 1 1000;
+          font-display: swap;
         }
 
         :root {

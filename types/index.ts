@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { CSSObject } from '@emotion/react';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -46,6 +47,12 @@ export interface IRoute {
   pathPrefix?: string;
   action?: () => void;
   active?: boolean;
+}
+
+export interface IIcon {
+  name: IconProp;
+  color?: string;
+  size?: string;
 }
 
 export type Dict<T = any> = Record<string, T>;
