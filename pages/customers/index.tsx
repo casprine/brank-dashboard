@@ -1,11 +1,10 @@
 import { DashboardLayout } from 'components/common';
-
-const DashboardHome = () => {
+const Customers = () => {
   return (
     <DashboardLayout>
-      <p>Hello world</p>
+      <div>Customers page</div>
     </DashboardLayout>
   );
 };
 
-export default DashboardHome;
+export default Customers;

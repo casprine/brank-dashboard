@@ -25,7 +25,7 @@ const LoginPage = () => {
 
     try {
       const response = await hermes({
-        url: '/clients',
+        url: '/clients/login',
         data: inputState,
       });
 

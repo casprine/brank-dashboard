@@ -1,11 +1,10 @@
 import { DashboardLayout } from 'components/common';
-
-const DashboardHome = () => {
+const Settings = () => {
   return (
     <DashboardLayout>
-      <p>Hello world</p>
+      <div>Settings page</div>
     </DashboardLayout>
   );
 };
 
-export default DashboardHome;
+export default Settings;

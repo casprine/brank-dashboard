@@ -6,13 +6,12 @@ import { IRoute } from 'types';
 import { useRouter } from 'next/router';
 
 const routes: IRoute[] = [
+  // { label: 'Payment', path: '/apps', icon: 'wallet' },
   { label: 'Home', path: '/', icon: 'columns' },
   { label: 'Apps', path: '/apps', icon: 'rocket-launch' },
-  { label: 'Customers', path: '/apps', icon: 'user-crown' },
-  { label: 'Payment', path: '/apps', icon: 'wallet' },
-  { label: 'Products', path: '/apps', icon: 'box' },
-  { label: 'Developers', path: '/apps', icon: 'external-link-square' },
-  { label: 'Reports', path: '/apps', icon: 'chart-bar' },
+  { label: 'Products', path: '/products', icon: 'box' },
+  { label: 'Customers', path: '/customers', icon: 'user-crown' },
+  { label: 'Developers', path: '/developers', icon: 'external-link-square' },
 ];
 
 const Sidebar = () => {
@@ -31,13 +30,23 @@ const Sidebar = () => {
 
       <div className="menu-links">
         {routes.map((route: IRoute, index) => {
-          return <MenuItem {...route} key={index} />;
+          return <MenuItem active={router.pathname === route.path} {...route} key={index} />;
         })}
       </div>
 
       <Flex className="footer" stack>
-        <MenuItem pathPrefix="/app" label="What's New" icon="gift" />
-        <MenuItem pathPrefix="/app" label="Settings" icon="cog" />
+        {/* <MenuItem
+          active={router.pathname === '/new-changes'}
+          pathPrefix="/app"
+          label="What's New"
+          icon="gift"
+        /> */}
+        <MenuItem
+          active={router.pathname === '/settings'}
+          path="/settings"
+          label="Settings"
+          icon="cog"
+        />
         <MenuItem label="Logout" icon="sign-out-alt" action={() => router.push('/login')} />
       </Flex>
     </Flex>

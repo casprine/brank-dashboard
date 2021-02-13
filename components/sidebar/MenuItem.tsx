@@ -6,14 +6,24 @@ import { IRoute } from 'types';
 import { menuItemStyles } from './sidebar.styles';
 import Link from 'next/link';
 
-const MenuItem: React.FC<IRoute> = ({ label, icon, action, pathPrefix, path = '' }) => {
+const MenuItem: React.FC<IRoute> = ({ active, label, icon, action, pathPrefix, path = '' }) => {
   const url = pathPrefix ? `${pathPrefix}${path}` : path;
 
   function renderItem() {
     return (
-      <Flex css={menuItemStyles()} ai="center" className="menu-item" onClick={action}>
+      <Flex
+        css={menuItemStyles({
+          active,
+        })}
+        ai="center"
+        className="menu-item"
+        onClick={action}
+      >
         <Flex ai="center" jc="center" className="icon-container">
-          <Icon icon={['fad', icon as IconName]} color={theme.colors.gray[500]} />
+          <Icon
+            icon={['fad', icon as IconName]}
+            color={active ? theme.colors.secondary : theme.colors.gray[500]}
+          />
         </Flex>
         <p>{label}</p>
       </Flex>

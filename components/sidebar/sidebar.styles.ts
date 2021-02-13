@@ -55,13 +55,15 @@ const sideBarStyles: StyleFunction = () => {
   };
 };
 
-const menuItemStyles: StyleFunction = () => {
+const menuItemStyles: StyleFunction = ({ active }) => {
   return {
     margin: '7px 0',
     padding: '10px',
     borderRadius: 6,
     transition: 'all 300ms',
     width: '100%',
+    backgroundColor: active ? theme.colors.white : 'transparent',
+    boxShadow: active ? theme.shadows.md : 'none',
 
     ':hover': {
       backgroundColor: theme.colors.white,
@@ -75,7 +77,7 @@ const menuItemStyles: StyleFunction = () => {
 
     p: {
       fontSize: 15,
-      color: theme.colors.gray[500],
+      color: active ? theme.colors.secondary : theme.colors.gray[500],
       fontWeight: 600,
       marginLeft: 15,
       fontFamily: theme.typography.fonts.sans,
