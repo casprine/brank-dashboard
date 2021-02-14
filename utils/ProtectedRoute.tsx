@@ -6,7 +6,7 @@ import theme from 'theme';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }): any => {
   const { isAuthenticated, showLoadingIndicator } = useAppProvider();
-  const { pathname, push } = useRouter();
+  const { pathname } = useRouter();
 
   if (
     showLoadingIndicator ||
@@ -18,9 +18,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }): any => {
       </Flex>
     );
   }
-
-  if (showLoadingIndicator || (isAuthenticated && pathname === '/login') || pathname === '/signup')
-    push('/');
 
   return children;
 };
