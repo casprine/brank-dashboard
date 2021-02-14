@@ -7,9 +7,14 @@ import { generateStyles } from 'pages/signup';
 import { Stack } from 'components/layout';
 import { useForm } from 'hooks';
 import { hermes } from 'utils/hermes';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+import { useAppProvider } from 'context/AppProvider';
 
 const LoginPage = () => {
   const [showLoadingIndicator, setShowLoadingIndicator] = useState(false);
+  const router = useRouter();
+  const { updateClient } = useAppProvider();
 
   const form = useForm({
     fields: {
@@ -24,12 +29,20 @@ const LoginPage = () => {
     setShowLoadingIndicator(true);
 
     try {
-      const response = await hermes({
+      const { data: data } = await hermes({
         url: '/clients/login',
         data: inputState,
       });
 
-      console.log({ response });
+      if (data.message === 'success') {
+        const client = data?.data?.client;
+        const token = data?.data.token;
+
+        Cookies.set('token', token, { expires: 60 });
+        Cookies.set('userId', client.id, { expires: 60 });
+        updateClient(client);
+        router.push('/');
+      }
     } catch (error) {
       console.log(error.message);
     } finally {

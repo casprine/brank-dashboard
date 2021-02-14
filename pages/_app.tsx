@@ -4,14 +4,17 @@ import router from 'next/router';
 import GlobalStyles from 'theme/globalStyle';
 import 'normalize.css';
 import { startIconLibrary } from 'components/icon/Icon';
+import AppProvider from 'context/AppProvider';
 
 startIconLibrary();
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyles />
-      <Component {...pageProps} />
+      <AppProvider>
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </AppProvider>
     </>
   );
 }

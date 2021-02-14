@@ -4,9 +4,9 @@ import { sideBarStyles } from './sidebar.styles';
 import MenuItem from './MenuItem';
 import { IRoute } from 'types';
 import { useRouter } from 'next/router';
+import { useAppProvider } from 'context/AppProvider';
 
 const routes: IRoute[] = [
-  // { label: 'Payment', path: '/apps', icon: 'wallet' },
   { label: 'Home', path: '/', icon: 'columns' },
   { label: 'Apps', path: '/apps', icon: 'rocket-launch' },
   { label: 'Products', path: '/products', icon: 'box' },
@@ -17,14 +17,20 @@ const routes: IRoute[] = [
 
 const Sidebar = () => {
   const router = useRouter();
+  const { client } = useAppProvider();
+
+  console.log({ client });
+
   return (
     <Flex css={sideBarStyles()} jc="space-between" ai="center">
       <Flex ai="center" jc="space-between" className="header">
         <Flex className="company-logo-container">
           <Image src="/images/brank-logo.png" width={35} height={35} className="company-logo" />
           <Stack className="company-details" jc="center">
-            <p className="company-name">Mont & Co</p>
-            <p className="username">Montgomery Hayton</p>
+            <p className="company-name">{client?.['company_name']}</p>
+            <p className="username">
+              {client?.['first_name']} {client?.['last_name']}
+            </p>
           </Stack>
         </Flex>
       </Flex>

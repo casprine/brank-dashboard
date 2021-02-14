@@ -1,10 +1,9 @@
 import axios, { AxiosPromise } from 'axios';
+import Cookies from 'js-cookie';
 
 // our network system powered by the Olympian of god of transport
 
 const baseUrl: string = 'http://brank-core.herokuapp.com';
-
-// interface IRequestData {}
 
 interface IHermes {
   data?: any;
@@ -23,7 +22,9 @@ export function hermes({ data, url, method = 'POST' }: IHermes): AxiosPromise {
 }
 
 export function guardHermes({ data, url, method }: IHermes): AxiosPromise {
-  const token = localStorage.getItem('token');
+  const token = Cookies.get('token');
+  if (!token) throw Error('No token found');
+
   const requestURL: string = `${baseUrl}${url}`;
 
   return axios({
