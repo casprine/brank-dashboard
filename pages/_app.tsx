@@ -5,15 +5,17 @@ import GlobalStyles from 'theme/globalStyle';
 import 'normalize.css';
 import { startIconLibrary } from 'components/icon/Icon';
 import AppProvider from 'context/AppProvider';
-
+import { ProtectRoute } from 'utils/ProtectedRoute';
 startIconLibrary();
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <AppProvider>
-        <GlobalStyles />
-        <Component {...pageProps} />
+        <ProtectRoute>
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </ProtectRoute>
       </AppProvider>
     </>
   );

@@ -5,7 +5,7 @@ import { guardHermes, hermes } from 'utils/hermes';
 
 export const AppContext = createContext({} as any);
 
-const AppProvider = ({ children }) => {
+const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [client, setClient] = useState<any>(null);
   const [showLoadingIndicator, setLoadingIndicator] = useState<boolean>(false);
 
@@ -17,20 +17,16 @@ const AppProvider = ({ children }) => {
       const userId = Cookies.get('userId');
 
       if (token) {
-        console.log('token is here', token);
-        console.log('userId is here', userId);
-
         const response = await hermes({
           url: `/clients/${userId}`,
           method: 'GET',
         }).catch((error) => console.log('error', error));
 
-        console.log({ response });
-
         // if (client) setClient(client);
       } else {
       }
 
+      setClient({ first_name: 'Casprine', last_name: 'Assempah', company_name: 'Kree' });
       setLoadingIndicator(false);
     }
 
@@ -45,7 +41,15 @@ const AppProvider = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{ client, updateClient: setClient, logout }}>
+    <AppContext.Provider
+      value={{
+        showLoadingIndicator,
+        isAuthenticated: !!client,
+        client,
+        updateClient: setClient,
+        logout,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
