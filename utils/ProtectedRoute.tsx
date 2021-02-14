@@ -4,7 +4,7 @@ import { useAppProvider } from 'context/AppProvider';
 import { useRouter } from 'next/router';
 import theme from 'theme';
 
-export const ProtectRoute = ({ children }: { children: React.ReactNode }) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }): any => {
   const { isAuthenticated, showLoadingIndicator } = useAppProvider();
   const { pathname } = useRouter();
 
@@ -20,3 +20,5 @@ export const ProtectRoute = ({ children }: { children: React.ReactNode }) => {
   }
   return children;
 };
+
+export default ProtectedRoute;

@@ -17,17 +17,18 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
       const userId = Cookies.get('userId');
 
       if (token) {
-        const response = await hermes({
+        const response = await guardHermes({
           url: `/clients/${userId}`,
           method: 'GET',
         }).catch((error) => console.log('error', error));
 
-        // if (client) setClient(client);
+        if (response?.data?.message === 'success') {
+          setClient(response?.data?.data?.client);
+          setLoadingIndicator(false);
+        }
       } else {
+        router.push('/login');
       }
-
-      setClient({ first_name: 'Casprine', last_name: 'Assempah', company_name: 'Kree' });
-      setLoadingIndicator(false);
     }
 
     loadUserFromCookies();

@@ -23,6 +23,7 @@ export function hermes({ data, url, method = 'POST' }: IHermes): AxiosPromise {
 
 export function guardHermes({ data, url, method }: IHermes): AxiosPromise {
   const token = Cookies.get('token');
+
   if (!token) throw Error('No token found');
 
   const requestURL: string = `${baseUrl}${url}`;
