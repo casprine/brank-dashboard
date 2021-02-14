@@ -17,7 +17,7 @@ const generateStyles: StyleFunction = () => {
     '.icon': {
       width: '25px',
       height: '25px',
-      backgroundColor: theme.colors.gray[200],
+      backgroundColor: theme.colors.gray[300],
       borderRadius: '50%',
     },
 
