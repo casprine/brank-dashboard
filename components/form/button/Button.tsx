@@ -8,7 +8,6 @@ import theme from 'theme';
 
 const buttonDefaults: CSSObject = {
   height: '50px',
-  width: '100%',
   borderRadius: '6px',
   border: '0',
   margin: '20px 0',

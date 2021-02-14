@@ -31,6 +31,7 @@ const GlobalStyles = () => {
         }
 
         * {
+          /* outline: 1px solid red; */
           margin: 0;
           padding: 0;
           box-sizing: border-box;
@@ -38,7 +39,6 @@ const GlobalStyles = () => {
           font-weight: 350;
           font-family: var(--regular-font);
           -webkit-font-smoothing: antialiased;
-          -webkit-appearance: default-button;
         }
 
         .container {
@@ -47,6 +47,13 @@ const GlobalStyles = () => {
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .container-large {
+          max-width: 1240px;
+          margin: 0 auto;
+          padding-right: 2rem;
+          padding-left: 2rem;
         }
 
         .auth-container {

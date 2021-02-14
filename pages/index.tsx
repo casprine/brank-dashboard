@@ -3,12 +3,18 @@ import Metric from 'components/metric/Metric';
 import { Grid } from 'components/layout';
 import { formatMoney } from 'utils/helpers';
 import theme from 'theme';
+import Header from 'components/header/Header';
 
 const DashboardHome = () => {
   return (
     <DashboardLayout>
-      <section css={generateStyles()}>
-        <h3>Overview</h3>
+      <Header
+        title="Overview"
+        subTitle="Today's a great day to do business"
+        action={() => {}}
+        actionLabel="Create Application"
+      />
+      <section className="container-large" css={generateStyles()}>
         <Grid lg={3} gap={0}>
           <Metric icon="exchange-alt" title="API calls" footer="Estimated api calls">
             <div className="metric-amount">2043</div>

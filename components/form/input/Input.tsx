@@ -25,7 +25,7 @@ const Input: React.FC<IInputProps & InputPropsType> = ({
   return (
     <div
       css={inputStyles({
-        hasError: error ? true : false,
+        hasError: Boolean(error),
       })}
       className={`${className} input-container`}
     >

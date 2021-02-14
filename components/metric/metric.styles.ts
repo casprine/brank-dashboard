@@ -10,10 +10,6 @@ const generateStyles: StyleFunction = () => {
     transition: 'transform .4s',
     cursor: 'default',
 
-    '*': {
-      // outline: '1px dotted red',
-    },
-
     '.icon': {
       width: '25px',
       height: '25px',

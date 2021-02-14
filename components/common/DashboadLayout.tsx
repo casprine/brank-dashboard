@@ -7,6 +7,7 @@ type IProps = {
   children?: ReactNode;
   title?: string;
 };
+
 const DashboardLayout: React.FC<IProps> = ({ children }) => {
   return (
     <>
