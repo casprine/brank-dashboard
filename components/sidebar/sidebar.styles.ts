@@ -12,7 +12,6 @@ const sideBarStyles: StyleFunction = () => {
     },
 
     '.header': {
-      backgroundColor: 'white',
       borderRadius: 6,
       cursor: 'default',
     },

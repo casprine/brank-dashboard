@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { CSSObject } from '@emotion/react';
-import { Icon, IconName, IconProp } from '@fortawesome/fontawesome-svg-core';
+import { IconName, IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
