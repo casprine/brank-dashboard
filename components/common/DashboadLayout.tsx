@@ -13,10 +13,8 @@ const DashboardLayout: React.FC<IProps> = ({ children }) => {
       <Head>
         <title>Brank</title>
       </Head>
-
       <main css={dashboardStyles}>
         <Sidebar />
-
         <div className="page-container">{children}</div>
       </main>
     </>

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { CSSObject } from '@emotion/react';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { Icon, IconName, IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -68,3 +68,9 @@ export type buttonAppearance =
   | 'error';
 export type buttonSizes = 'xs' | 'sm' | 'md' | 'lg';
 export type ButtonType = 'submit' | 'reset' | 'button';
+
+export interface IMetric {
+  icon: IconName;
+  title: string;
+  footer?: string;
+}

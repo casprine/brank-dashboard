@@ -65,7 +65,6 @@ import {
   faFileChartLine,
   faUnlockAlt,
   faReceipt,
-  faMoneyCheckAlt,
   faChartPieAlt,
   faCog,
   faSignOut,
@@ -90,6 +89,7 @@ import {
   faBox,
   faChartBar,
   faSignOutAlt,
+  faMoneyCheckAlt,
 } from '@fortawesome/pro-duotone-svg-icons';
 import {
   faPlusCircle,
@@ -103,6 +103,7 @@ export function startIconLibrary(): void {
   library.add(
     faChartBar,
     faSignOutAlt,
+    faMoneyCheckAlt,
     faBox,
     faRocketLaunch,
     faExternalLinkSquare,
