@@ -1,7 +1,7 @@
 import { useEffect, useState, createContext, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
-import { guardHermes } from 'utils/hermes';
+import { guardHermes, hermes } from 'utils/hermes';
 
 export const AppContext = createContext({} as any);
 
@@ -20,7 +20,7 @@ const AppProvider = ({ children }) => {
         console.log('token is here', token);
         console.log('userId is here', userId);
 
-        const response = await guardHermes({
+        const response = await hermes({
           url: `/clients/${userId}`,
           method: 'GET',
         }).catch((error) => console.log('error', error));
@@ -37,8 +37,15 @@ const AppProvider = ({ children }) => {
     loadUserFromCookies();
   }, []);
 
+  function logout() {
+    Cookies.remove('token');
+    Cookies.remove('userId');
+    setClient(null);
+    router.push('/login');
+  }
+
   return (
-    <AppContext.Provider value={{ client, updateClient: setClient }}>
+    <AppContext.Provider value={{ client, updateClient: setClient, logout }}>
       {children}
     </AppContext.Provider>
   );

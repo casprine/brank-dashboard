@@ -17,7 +17,7 @@ const routes: IRoute[] = [
 
 const Sidebar = () => {
   const router = useRouter();
-  const { client } = useAppProvider();
+  const { client, logout } = useAppProvider();
 
   console.log({ client });
 
@@ -48,7 +48,7 @@ const Sidebar = () => {
           label="Settings"
           icon="cog"
         /> */}
-        <MenuItem label="Logout" icon="sign-out-alt" action={() => router.push('/login')} />
+        <MenuItem label="Logout" icon="sign-out-alt" action={() => logout()} />
       </Flex>
     </Flex>
   );
