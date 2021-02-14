@@ -43,6 +43,7 @@ const Loader: React.FC<IProps> = ({
         p: {
           color: color,
           fontFamily: theme.typography.fonts.sans,
+          fontWeight: 600,
         },
       }}
     >

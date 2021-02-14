@@ -101,8 +101,8 @@ const LoginPage = () => {
               </div>
 
               <div className="row">
-                <Button type="submit" size="lg" isLoading={showLoadingIndicator}>
-                  <p className="btn-text">Login</p>
+                <Button type="submit" isLoading={showLoadingIndicator}>
+                  Login
                 </Button>
               </div>
             </Stack>

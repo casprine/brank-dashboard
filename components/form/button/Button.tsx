@@ -187,12 +187,6 @@ const Button: React.FC<IButton> = ({
       )}
     </button>
   );
-
-  // return (
-  //   <button type={type} css={generateStyles()}>
-  //     {children}
-  //   </button>
-  // );
 };
 
 export default Button;
