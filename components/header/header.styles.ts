@@ -3,8 +3,8 @@ import theme from 'theme';
 
 const headerStyles: StyleFunction = () => {
   return {
-    padding: '30px 3rem 2rem 2rem',
     marginBottom: '2rem',
+    marginTop: '50px',
 
     '.title': {
       color: theme.colors.primary,

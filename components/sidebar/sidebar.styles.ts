@@ -3,26 +3,26 @@ import theme from 'theme';
 
 const sideBarStyles: StyleFunction = () => {
   return {
-    padding: '30px 24px',
+    padding: '25px 2rem',
+    backgroundColor: theme.colors.gray[50],
+    borderBottom: `1px solid ${theme.colors.gray[200]}`,
+
+    '*': {
+      // outline: '1px solid red',
+    },
 
     '.header': {
-      marginBottom: '4.5rem',
       backgroundColor: 'white',
-      boxShadow: theme.shadows.md,
-      padding: '12px',
       borderRadius: 6,
       cursor: 'default',
     },
 
     '.company-logo': {
-      boxShadow: theme.shadows.lg,
       borderRadius: 6,
       cursor: 'default',
     },
 
     '.footer': {
-      marginTop: 'auto',
-
       '.menu-item': {
         margin: '3px 0',
       },
@@ -38,11 +38,11 @@ const sideBarStyles: StyleFunction = () => {
       },
 
       '.company-name': {
-        fontSize: 15,
         marginBottom: 5,
         color: theme.colors.gray[700],
         fontWeight: 600,
         fontFamily: theme.typography.fonts.sans,
+        fontSize: 15,
       },
 
       '.username': {
@@ -57,17 +57,15 @@ const sideBarStyles: StyleFunction = () => {
 
 const menuItemStyles: StyleFunction = ({ active }) => {
   return {
-    margin: '7px 0',
+    margin: '0 7px',
     padding: '10px',
     borderRadius: 6,
     transition: 'all 300ms',
     width: '100%',
-    backgroundColor: active ? theme.colors.white : 'transparent',
-    boxShadow: active ? theme.shadows.md : 'none',
 
     ':hover': {
-      backgroundColor: theme.colors.white,
-      boxShadow: theme.shadows.md,
+      backgroundColor: active ? 'transparent' : theme.colors.white,
+      boxShadow: active ? 'none' : theme.shadows.md,
     },
 
     '.icon-container': {
@@ -79,7 +77,7 @@ const menuItemStyles: StyleFunction = ({ active }) => {
       fontSize: 15,
       color: active ? theme.colors.secondary : theme.colors.gray[500],
       fontWeight: 600,
-      marginLeft: 15,
+      marginLeft: 10,
       fontFamily: theme.typography.fonts.sans,
     },
   };

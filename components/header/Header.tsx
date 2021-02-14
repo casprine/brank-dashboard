@@ -11,7 +11,7 @@ interface IProps {
 
 const Header: React.FC<IProps> = ({ title, subTitle, action, actionLabel }) => {
   return (
-    <Flex ai="center" jc="space-between" css={generateStyles()}>
+    <Flex ai="center" jc="space-between" className="container-large" css={generateStyles()}>
       <Flex stack>
         <p className="title">{title}</p>
         {subTitle && <div className="sub-title">{subTitle}</div>}
