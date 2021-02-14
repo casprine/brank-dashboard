@@ -1,7 +1,7 @@
 import { useEffect, useState, createContext, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
-import { guardHermes, hermes } from 'utils/hermes';
+import { guardHermes } from 'utils/hermes';
 
 export const AppContext = createContext({} as any);
 
@@ -17,14 +17,18 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
       const userId = Cookies.get('userId');
 
       if (token) {
-        const response = await guardHermes({
-          url: `/clients/${userId}`,
-          method: 'GET',
-        }).catch((error) => console.log('error', error));
+        try {
+          const response = await guardHermes({
+            url: `/clients/${userId}`,
+            method: 'GET',
+          });
 
-        if (response?.data?.message === 'success') {
-          setClient(response?.data?.data?.client);
-          setLoadingIndicator(false);
+          if (response?.data?.message === 'success') {
+            setClient(response?.data?.data?.client);
+            setLoadingIndicator(false);
+          }
+        } catch (error) {
+          console.log('error', error);
         }
       } else {
         router.push('/login');
