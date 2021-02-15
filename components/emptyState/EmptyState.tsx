@@ -40,7 +40,9 @@ const EmptyState: React.FC<IProps> = ({ title, description, action, actionLabel 
       </div>
 
       <div className="cta">
-        <Button action={action}>{actionLabel}</Button>
+        <Button appearance="outline" action={action}>
+          {actionLabel}
+        </Button>
       </div>
     </Flex>
   );

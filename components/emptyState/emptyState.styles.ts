@@ -27,7 +27,7 @@ const emptyStateStyles: StyleFunction = () => {
       margin: '20px 0',
 
       p: {
-        color: theme.colors.gray[600],
+        color: theme.colors.gray[500],
         fontWeight: 600,
         fontFamily: theme.typography.fonts.sans,
         fontSize: '17px',
