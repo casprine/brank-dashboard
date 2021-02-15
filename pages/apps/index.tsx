@@ -9,7 +9,7 @@ const Apps = () => {
 
       <div className="container-large">
         <EmptyState
-          title="No Applications created"
+          title="No Applications found"
           description="Communicate directly with Plaid support, filter and search cases, and share information with your teammates in real-time."
           action={() => {}}
           actionLabel="Create Application"

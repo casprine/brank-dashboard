@@ -31,7 +31,6 @@ const GlobalStyles = () => {
         }
 
         * {
-          /* outline: 1px solid red; */
           margin: 0;
           padding: 0;
           box-sizing: border-box;

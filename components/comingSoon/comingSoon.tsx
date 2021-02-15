@@ -48,8 +48,8 @@ const ComingSoon: React.FC<{ icon: IIcon; description: string }> = ({ icon, desc
             color: theme.colors.gray[500],
             fontWeight: 600,
             fontFamily: theme.typography.fonts.sans,
-            marginTop: 20,
             fontSize: '17px',
+            marginTop: 20,
             lineHeight: '25px',
           }}
         >
