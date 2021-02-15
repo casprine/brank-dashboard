@@ -22,7 +22,7 @@ const emptyStateStyles: StyleFunction = () => {
     },
 
     '.description': {
-      width: '50%',
+      width: '45%',
       textAlign: 'center',
       margin: '20px 0',
 
@@ -31,6 +31,7 @@ const emptyStateStyles: StyleFunction = () => {
         fontWeight: 600,
         fontFamily: theme.typography.fonts.sans,
         fontSize: '17px',
+        lineHeight: '23px',
       },
     },
   };
