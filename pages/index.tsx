@@ -42,8 +42,6 @@ const generateStyles = () => {
       color: theme.colors.primary,
       fontSize: 20,
     },
-
-    '.grid': {},
   };
 };
 
