@@ -28,6 +28,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
             setLoadingIndicator(false);
           }
         } catch (error) {
+          router.push('/login');
           console.log('error', error);
         }
       } else {

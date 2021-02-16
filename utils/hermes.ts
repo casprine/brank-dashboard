@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 // our network system powered by the Olympian of god of transport
 
-const baseUrl: string = 'http://brank-core.herokuapp.com';
+const baseUrl: string = 'https://brank-core.herokuapp.com';
 
 interface IHermes {
   data?: any;

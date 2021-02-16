@@ -7,9 +7,11 @@ import theme from 'theme';
 import { useForm } from 'hooks';
 import { useState } from 'react';
 import { hermes } from 'utils/hermes';
+import { useRouter } from 'next/router';
 
 const SignupPage = () => {
   const [showLoadingIndicator, setShowLoadingIndicator] = useState(false);
+  const router = useRouter();
 
   const form = useForm({
     fields: {
@@ -32,7 +34,9 @@ const SignupPage = () => {
         data: inputState,
       });
 
-      console.log({ response });
+      if (response?.data?.message === 'success') {
+        router.push('/login');
+      }
     } catch (error) {
       console.log([error]);
     } finally {
