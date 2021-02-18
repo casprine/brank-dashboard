@@ -10,7 +10,7 @@ const generateStyles: StyleFunction = () => {
     cursor: 'default',
     backgroundColor: theme.colors.white,
     boxShadow: theme.shadows.md,
-    borderRadius: 4,
+    borderRadius: 6,
 
     '.icon': {
       width: '25px',
