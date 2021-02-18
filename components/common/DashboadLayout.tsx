@@ -8,13 +8,13 @@ type IProps = {
   title?: string;
 };
 
-const DashboardLayout: React.FC<IProps> = ({ children }) => {
+const DashboardLayout: React.FC<IProps> = ({ children, ...rest }) => {
   return (
     <>
       <Head>
         <title>Brank</title>
       </Head>
-      <main css={dashboardStyles}>
+      <main css={dashboardStyles} {...rest}>
         <Sidebar />
         <div className="page-container">{children}</div>
       </main>

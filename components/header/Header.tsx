@@ -17,11 +17,7 @@ const Header: React.FC<IProps> = ({ title, subTitle, action, actionLabel }) => {
         {subTitle && <div className="sub-title">{subTitle}</div>}
       </Flex>
 
-      {action && (
-        <Button action={action} q>
-          {actionLabel}
-        </Button>
-      )}
+      {action && <Button action={action}>{actionLabel}</Button>}
     </Flex>
   );
 };

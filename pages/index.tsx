@@ -6,6 +6,8 @@ import { formatMoney } from 'utils/helpers';
 import theme from 'theme';
 import Header from 'components/header/Header';
 import brank from 'brank-connect';
+import { GridItem } from 'components/layout/Grid';
+import Chart, { Chart2 } from 'components/charts';
 
 function useBrank() {
   const instance = React.useMemo(() => {
@@ -22,15 +24,16 @@ const DashboardHome = () => {
   const brankInstance = useBrank();
 
   return (
-    <DashboardLayout>
+    <DashboardLayout css={generateStyles()}>
       <Header
         title="Overview"
         subTitle="Today's a great day to do business"
         action={() => brankInstance.open()}
         actionLabel="Launch Demo"
       />
-      <section className="container-large" css={generateStyles()}>
-        <Grid lg={3} gap={0}>
+
+      <section className="container-large">
+        <Grid lg={3}>
           <Metric icon="exchange-alt" title="API calls" footer="Estimated api calls">
             <div className="metric-amount">2043</div>
           </Metric>
@@ -40,6 +43,17 @@ const DashboardHome = () => {
           <Metric title="Dept" icon="money-check-alt" footer="How much you owe us.">
             <div className="metric-amount">₵{formatMoney(34333)}</div>
           </Metric>
+        </Grid>
+      </section>
+
+      <section className="container-large graph-container">
+        <Grid lg={3}>
+          <GridItem span={2} className="graph">
+            <Chart />
+          </GridItem>
+          <GridItem className="graph">
+            <Chart2 />
+          </GridItem>
         </Grid>
       </section>
     </DashboardLayout>
@@ -52,10 +66,21 @@ const generateStyles = () => {
       marginBottom: 50,
     },
 
+    '.graph': {
+      backgroundColor: 'white',
+      padding: '20px',
+      borderRadius: 6,
+      boxShadow: theme.shadows.md,
+    },
+
     '.metric-amount': {
       fontWeight: 600,
       color: theme.colors.primary,
       fontSize: 20,
+    },
+
+    '.graph-container': {
+      marginTop: 50,
     },
   };
 };

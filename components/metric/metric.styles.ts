@@ -3,13 +3,14 @@ import theme from 'theme';
 
 const generateStyles: StyleFunction = () => {
   return {
-    padding: '20px',
-    minHeight: '150px',
-    boxShadow: 'inset 0 0 0 1px #e3e8ee',
+    padding: '20px 30px',
+    minHeight: '160px',
     margin: '-1px -1px 0 0',
     transition: 'transform .4s',
     cursor: 'default',
     backgroundColor: theme.colors.white,
+    boxShadow: theme.shadows.md,
+    borderRadius: 4,
 
     '.icon': {
       width: '25px',

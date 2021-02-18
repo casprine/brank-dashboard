@@ -15,7 +15,6 @@ const Metric: React.FC<IMetric> = ({ icon, footer, title, children }) => {
       </Flex>
 
       <div className="content">{children}</div>
-
       <div className="footer">
         <p>{footer}</p>
       </div>

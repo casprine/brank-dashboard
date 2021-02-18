@@ -18,7 +18,7 @@ const headerStyles: StyleFunction = () => {
     },
 
     '.sub-title': {
-      color: theme.colors.gray[500],
+      color: theme.colors.gray[700],
       fontSize: 14,
       marginTop: 10,
     },

@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import Flex from 'components/layout/Flex';
-// import Avatar from 'components/avatar/Avatar';
 import Icon from 'components/icon/Icon';
 
 import theme from 'theme';
@@ -22,13 +21,13 @@ const ComingSoon: React.FC<{ icon: IIcon; description: string }> = ({ icon, desc
           ai="center"
           jc="center"
           css={{
-            backgroundColor: theme.colors.gray[100],
+            backgroundColor: theme.colors.gray[400],
             width: '100px',
             height: '100px',
             borderRadius: '50%',
           }}
         >
-          <Icon size="3x" color={theme.colors.gray[500]} icon={['fad', icon.name as IconName]} />
+          <Icon size="3x" color={theme.colors.gray[100]} icon={['fad', icon.name as IconName]} />
         </Flex>
 
         <h3

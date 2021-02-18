@@ -11,10 +11,6 @@ const sideBarStyles: StyleFunction = () => {
       borderBottom: `1px solid ${theme.colors.gray[200]}`,
     },
 
-    '*': {
-      // outline: '1px dotted red',
-    },
-
     '.logout-btn': {
       padding: '8px',
       backgroundColor: theme.colors.gray[200],
@@ -71,10 +67,6 @@ const sideBarStyles: StyleFunction = () => {
 
 const menuItemStyles: StyleFunction = ({ active }) => {
   return {
-    '*': {
-      // outline: '1px dotted red',
-    },
-
     margin: '0 7px',
     padding: '8px 15px',
     borderRadius: 6,
