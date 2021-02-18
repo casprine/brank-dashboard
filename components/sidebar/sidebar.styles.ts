@@ -3,12 +3,22 @@ import theme from 'theme';
 
 const sideBarStyles: StyleFunction = () => {
   return {
-    padding: '25px 2rem',
-    backgroundColor: theme.colors.gray[50],
-    borderBottom: `1px solid ${theme.colors.gray[200]}`,
+    // backgroundColor: theme.colors.gray[50],
+
+    '.company-header': {
+      width: '100%',
+      padding: '20px 5rem',
+      borderBottom: `1px solid ${theme.colors.gray[200]}`,
+    },
 
     '*': {
-      // outline: '1px solid red',
+      // outline: '1px dotted red',
+    },
+
+    '.menu-links': {
+      padding: '15px 4rem',
+      width: '100%',
+      borderBottom: `1px solid ${theme.colors.gray[200]}`,
     },
 
     '.header': {
@@ -56,27 +66,21 @@ const sideBarStyles: StyleFunction = () => {
 
 const menuItemStyles: StyleFunction = ({ active }) => {
   return {
+    '*': {
+      // outline: '1px dotted red',
+    },
+
     margin: '0 7px',
-    padding: '10px',
+    padding: '8px 15px',
     borderRadius: 6,
     transition: 'all 300ms',
     width: '100%',
-
-    ':hover': {
-      backgroundColor: active ? 'transparent' : theme.colors.white,
-      boxShadow: active ? 'none' : theme.shadows.md,
-    },
-
-    '.icon-container': {
-      width: 18,
-      height: 18,
-    },
+    backgroundColor: active ? theme.colors.gray[100] : 'transparent',
 
     p: {
       fontSize: 15,
-      color: active ? theme.colors.secondary : theme.colors.gray[500],
+      color: active ? theme.colors.primary : theme.colors.gray[500],
       fontWeight: 600,
-      marginLeft: 10,
       fontFamily: theme.typography.fonts.sans,
     },
   };

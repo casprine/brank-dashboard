@@ -10,6 +10,7 @@ import { hermes } from 'utils/hermes';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useAppProvider } from 'context/AppProvider';
+import { LOGIN_SUCCESSFUL } from 'constants/requests';
 
 const LoginPage = () => {
   const [showLoadingIndicator, setShowLoadingIndicator] = useState(false);
@@ -34,7 +35,7 @@ const LoginPage = () => {
         data: inputState,
       });
 
-      if (data.message === 'success') {
+      if (data.message === LOGIN_SUCCESSFUL) {
         const client = data?.data?.client;
         const token = data?.data.token;
 

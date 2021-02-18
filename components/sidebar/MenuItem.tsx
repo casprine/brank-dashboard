@@ -19,12 +19,6 @@ const MenuItem: React.FC<IRoute> = ({ active, label, icon, action, pathPrefix, p
         className="menu-item"
         onClick={action}
       >
-        <Flex ai="center" jc="center" className="icon-container">
-          <Icon
-            icon={['fad', icon as IconName]}
-            color={active ? theme.colors.secondary : theme.colors.gray[500]}
-          />
-        </Flex>
         <p>{label}</p>
       </Flex>
     );
