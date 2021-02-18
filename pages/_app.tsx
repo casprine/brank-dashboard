@@ -6,6 +6,10 @@ import 'normalize.css';
 import { startIconLibrary } from 'components/icon/Icon';
 import AppProvider from 'context/AppProvider';
 import ProtectedRoute from 'utils/ProtectedRoute';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
+
 startIconLibrary();
 
 function App({ Component, pageProps }: AppProps) {

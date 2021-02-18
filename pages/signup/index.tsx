@@ -8,10 +8,14 @@ import { useForm } from 'hooks';
 import { useState } from 'react';
 import { hermes } from 'utils/hermes';
 import { useRouter } from 'next/router';
+import { ACCOUNT_CREATED_SUCCESSFULLY } from 'constants/requests';
+import Cookies from 'js-cookie';
+import { useAppProvider } from 'context/AppProvider';
 
 const SignupPage = () => {
   const [showLoadingIndicator, setShowLoadingIndicator] = useState(false);
   const router = useRouter();
+  const { updateClient } = useAppProvider();
 
   const form = useForm({
     fields: {
@@ -27,15 +31,20 @@ const SignupPage = () => {
 
   async function createAccount(_: any, inputState: any) {
     setShowLoadingIndicator(true);
-
     try {
-      const response = await hermes({
+      const { data } = await hermes({
         url: '/clients',
         data: inputState,
       });
 
-      if (response?.data?.message === 'success') {
-        router.push('/login');
+      if (data?.message === ACCOUNT_CREATED_SUCCESSFULLY) {
+        const client = data?.data?.client;
+        const token = data?.data.token;
+
+        Cookies.set('token', token, { expires: 60 });
+        Cookies.set('userId', client.id, { expires: 60 });
+        updateClient(client);
+        router.push('/');
       }
     } catch (error) {
       console.log([error]);
@@ -147,7 +156,7 @@ const SignupPage = () => {
               </div>
 
               <div className="row">
-                <Button size="lg" isLoading={showLoadingIndicator}>
+                <Button size="lg" type="submit" isLoading={showLoadingIndicator}>
                   <p className="btn-text">Get started</p>
                 </Button>
               </div>

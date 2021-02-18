@@ -19,6 +19,8 @@ const Form: React.FC<IProps> = ({ form, onSubmit, children }) => {
     const errors = form.validateFields();
     setErrors(errors);
 
+    console.log({ errors });
+
     if (!hasError(errors)) {
       return onSubmit(e, form.inputState);
     }
