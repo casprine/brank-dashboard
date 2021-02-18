@@ -1,4 +1,3 @@
-<p>Help</p>;
 import Image from 'next/image';
 import { Flex, Stack, Grid } from 'components/layout';
 import { sideBarStyles } from './sidebar.styles';
@@ -7,6 +6,7 @@ import { IRoute } from 'types';
 import { useRouter } from 'next/router';
 import { useAppProvider } from 'context/AppProvider';
 import { GridItem } from 'components/layout/Grid';
+import Icon from 'components/icon/Icon';
 
 const routes: IRoute[] = [
   { label: 'Home', path: '/' },
@@ -34,10 +34,14 @@ const Sidebar = () => {
           </Stack>
         </Flex>
 
-        <Flex>
-          <Stack isInline>
+        <Flex ai="center">
+          <Stack isInline spacing={24} ai="center" jc="center">
             <p>Help</p>
             <p>Docs</p>
+
+            <Flex className="logout-btn" onClick={logout} ai="center" jc="center">
+              <Icon icon={['fad', 'sign-out-alt']} />
+            </Flex>
           </Stack>
         </Flex>
       </Flex>
@@ -56,23 +60,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-{
-  /* <Flex ai="center" jc="space-between" className="header">
-<Flex className="company-logo-container">
-  <Image src="/images/brank-logo.png" width={35} height={35} className="company-logo" />
-  <Stack className="company-details" jc="center">
-    <p className="company-name">{client?.['company_name']}</p>
-    <p className="username">
-      {client?.['first_name']} {client?.['last_name']}
-    </p>
-  </Stack>
-</Flex>
-</Flex>
-
-
-
-<Flex className="footer">
-<MenuItem label="Logout" icon="sign-out-alt" action={() => logout()} />
-</Flex> */
-}

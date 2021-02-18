@@ -3,7 +3,7 @@ import theme from 'theme';
 
 const sideBarStyles: StyleFunction = () => {
   return {
-    // backgroundColor: theme.colors.gray[50],
+    backgroundColor: theme.colors.white,
 
     '.company-header': {
       width: '100%',
@@ -15,6 +15,11 @@ const sideBarStyles: StyleFunction = () => {
       // outline: '1px dotted red',
     },
 
+    '.logout-btn': {
+      padding: '8px',
+      backgroundColor: theme.colors.gray[200],
+      borderRadius: '50%',
+    },
     '.menu-links': {
       padding: '15px 4rem',
       width: '100%',
@@ -74,7 +79,6 @@ const menuItemStyles: StyleFunction = ({ active }) => {
     padding: '8px 15px',
     borderRadius: 6,
     transition: 'all 300ms',
-    width: '100%',
     backgroundColor: active ? theme.colors.gray[100] : 'transparent',
 
     p: {

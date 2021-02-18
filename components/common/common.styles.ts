@@ -5,11 +5,8 @@ const dashboardStyles: StyleFunction = () => {
   return {
     outline: '1px solid red',
     minHeight: '100vh',
-    backgroundColor: theme.colors.white,
-
-    '.page-container': {
-      backgroundColor: theme.colors.white,
-    },
+    // backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.gray[50],
   };
 };
 

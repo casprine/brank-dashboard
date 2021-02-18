@@ -9,6 +9,7 @@ const generateStyles: StyleFunction = () => {
     margin: '-1px -1px 0 0',
     transition: 'transform .4s',
     cursor: 'default',
+    backgroundColor: theme.colors.white,
 
     '.icon': {
       width: '25px',
