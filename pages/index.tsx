@@ -1,18 +1,33 @@
+import React from 'react';
 import { DashboardLayout } from 'components/common';
 import Metric from 'components/metric/Metric';
 import { Grid } from 'components/layout';
 import { formatMoney } from 'utils/helpers';
 import theme from 'theme';
 import Header from 'components/header/Header';
+import brank from 'brank-connect';
+
+function useBrank() {
+  const instance = React.useMemo(() => {
+    const b = brank({ key: 'casprine', onSuccess: () => {} });
+
+    b.setup();
+    return b;
+  }, []);
+
+  return instance;
+}
 
 const DashboardHome = () => {
+  const brankInstance = useBrank();
+
   return (
     <DashboardLayout>
       <Header
         title="Overview"
         subTitle="Today's a great day to do business"
-        action={() => {}}
-        actionLabel="Create Application"
+        action={() => brankInstance.open()}
+        actionLabel="Launch Demo"
       />
       <section className="container-large" css={generateStyles()}>
         <Grid lg={3} gap={0}>

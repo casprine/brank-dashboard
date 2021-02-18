@@ -366,6 +366,11 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-12.19.11.tgz#9220ab4b20d91169eb78f456dbfcbabee89dfb50"
   integrity sha512-bwVfNTFZOrGXyiQ6t4B9sZerMSShWNsGRw8tC5DY1qImUNczS9SjT4G6PnzjCnxsu5Ubj6xjL2lgwddkxtQl5w==
 
+"@types/node@^14.14.10":
+  version "14.14.28"
+  resolved "https://registry.npmjs.org/@types/node/-/node-14.14.28.tgz#cade4b64f8438f588951a6b35843ce536853f25b"
+  integrity sha512-lg55ArB+ZiHHbBBttLpzD07akz0QPrZgUODNakeC09i62dnrywr9mFErHuaPlB6I7z+sEbK+IYmplahvplCj2g==
+
 "@types/nprogress@^0.2.0":
   version "0.2.0"
   resolved "https://registry.npmjs.org/@types/nprogress/-/nprogress-0.2.0.tgz#86c593682d4199212a0509cc3c4d562bbbd6e45f"
@@ -865,6 +870,14 @@ braces@~3.0.2:
   integrity sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==
   dependencies:
     fill-range "^7.0.1"
+
+brank-connect@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.npmjs.org/brank-connect/-/brank-connect-0.1.7.tgz#22d1b7b908210150d9b2b5e27a6ee3e5685efa2b"
+  integrity sha512-zyuOQF6i23Lk74sOOqJxinc/x5O05Re2+iMgxOafVCgWKOVBbhP0m8HcCPd405ej+f+TLsBThHe9xXlyivGNwQ==
+  dependencies:
+    "@types/node" "^14.14.10"
+    tslib "^2.0.3"
 
 brorand@^1.0.1:
   version "1.1.0"
@@ -4429,6 +4442,11 @@ tslib@^1.10.0, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tslib@^2.0.3:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
+  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
 tty-browserify@0.0.0:
   version "0.0.0"

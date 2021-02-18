@@ -1,3 +1,4 @@
+<p>Help</p>;
 import Image from 'next/image';
 import { Flex, Stack, Grid } from 'components/layout';
 import { sideBarStyles } from './sidebar.styles';
@@ -8,12 +9,12 @@ import { useAppProvider } from 'context/AppProvider';
 import { GridItem } from 'components/layout/Grid';
 
 const routes: IRoute[] = [
-  { label: 'Home', path: '/', icon: 'columns' },
-  { label: 'Apps', path: '/apps', icon: 'rocket-launch' },
-  { label: 'Products', path: '/products', icon: 'box' },
-  { label: 'Customers', path: '/customers', icon: 'user-crown' },
-  { label: 'Developers', path: '/developers', icon: 'external-link-square' },
-  { label: 'Settings', path: '/settings', icon: 'cog' },
+  { label: 'Home', path: '/' },
+  { label: 'Apps', path: '/apps' },
+  { label: 'Products', path: '/products' },
+  { label: 'Customers', path: '/customers' },
+  { label: 'Developers', path: '/developers' },
+  { label: 'Settings', path: '/settings' },
 ];
 
 const Sidebar = () => {
@@ -24,7 +25,7 @@ const Sidebar = () => {
     <Flex css={sideBarStyles()} jc="space-between" ai="center" stack>
       <Flex className="company-header" ai="center" jc="space-between">
         <Flex>
-          {/* <Image src="/images/brank-logo.png" width={35} height={35} className="company-logo" /> */}
+          <Image src="/images/brank-logo.png" width={35} height={35} className="company-logo" />
           <Stack className="company-details" jc="center">
             <p className="company-name">{client?.['company_name']}</p>
             <p className="username">
@@ -34,7 +35,10 @@ const Sidebar = () => {
         </Flex>
 
         <Flex>
-          <p>Help</p>
+          <Stack isInline>
+            <p>Help</p>
+            <p>Docs</p>
+          </Stack>
         </Flex>
       </Flex>
 
