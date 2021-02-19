@@ -7,7 +7,7 @@ export interface IMethods {
   notify(options: IToast): void;
 }
 
-interface Props {
+interface IProps {
   registerMethods(methods: IMethods): void;
 }
 
@@ -23,101 +23,93 @@ const managerStyles: ManagerStyles = {
   bottomRight: { bottom: 0, right: 0 },
 };
 
-class ToastManager extends React.PureComponent<Props, State> {
-  static counter = 0;
+const defaultState = {
+  top: [],
+  topLeft: [],
+  topRight: [],
+  bottom: [],
+  bottomLeft: [],
+  bottomRight: [],
+};
 
-  constructor(props: Props) {
-    super(props);
-    const methods = {
-      notify: this.notify,
-    };
-    props.registerMethods(methods);
-  }
+let counter: number = 0;
 
-  state = {
-    top: [],
-    topLeft: [],
-    topRight: [],
-    bottom: [],
-    bottomLeft: [],
-    bottomRight: [],
-  };
-
-  notify = (options: IToast) => {
-    const toast = this.createToast(options);
-    this.setState((prevToasts) => {
+const ToastManager: React.FC<IProps> = ({ registerMethods }) => {
+  const notify = (options: IToast) => {
+    const toast = createToast(options);
+    setState((prevToasts) => {
       return {
         ...prevToasts,
         [options.position]: [...prevToasts[options.position], toast],
       };
     });
   };
-  createToast = (options: IToast): IToast => {
-    const id: ToastId = ++ToastManager.counter;
+
+  const methods = {
+    notify,
+  };
+  registerMethods(methods);
+
+  const [state, setState] = React.useState<State>(defaultState);
+
+  const createToast = (options: IToast): IToast => {
+    const id: ToastId = ++counter;
 
     return {
       ...options,
       isClosed: false,
-      onClose: this.destroy,
+      onClose: destroy,
       id: id,
     };
   };
-
-  close = (id: ToastId, position: ToastPosition) => {
-    this.setState({
-      ...this.state,
-      [position]: this.state[position].map((toast: IToast) => {
-        return { ...toast, isClosed: toast.id === id };
-      }),
-    });
-  };
-
-  destroy = (id: ToastId, position: ToastPosition) => {
-    const filteredToasts = this.state[position].filter((toast: IToast) => {
+  const destroy = (id: ToastId, position: ToastPosition) => {
+    const filteredToasts = state[position].filter((toast: IToast) => {
       return toast.id !== id;
     });
-    this.setState({ ...this.state, [position]: filteredToasts });
+    setState({ ...state, [position]: filteredToasts });
   };
 
-  render() {
-    return Object.keys(this.state).map((position, index) => {
-      return (
-        <span
-          css={{
-            position: 'fixed',
-            maxWidth: '600px',
-            zIndex: 9999999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            ...managerStyles[position as ToastPosition],
-          }}
-          key={index}
-        >
-          <AnimatePresence>
-            {this.state[position as ToastPosition].map((toast: IToast) => {
-              return (
-                <motion.li
-                  key={toast.id}
-                  layout
-                  initial={{ opacity: 0, y: 50, scale: 0.3 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 20, scale: 0 }}
-                >
-                  <Toast
+  return (
+    <>
+      {Object.keys(state).map((position, index) => {
+        return (
+          <span
+            css={{
+              position: 'fixed',
+              maxWidth: '600px',
+              zIndex: 9999999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              ...managerStyles[position as ToastPosition],
+            }}
+            key={index}
+          >
+            <AnimatePresence>
+              {state[position as ToastPosition].map((toast: IToast) => {
+                return (
+                  <motion.li
                     key={toast.id}
-                    {...toast}
-                    onClose={() => this.destroy(toast?.id, toast.position)}
-                  />
-                </motion.li>
-              );
-            })}
-          </AnimatePresence>
-        </span>
-      );
-    });
-  }
-}
+                    layout
+                    initial={{ opacity: 0, y: 50, scale: 0.3 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 20, scale: 0 }}
+                  >
+                    <Toast
+                      key={toast.id}
+                      {...toast}
+                      hide={() => destroy(toast?.id, toast.position)}
+                    />
+                  </motion.li>
+                );
+              })}
+            </AnimatePresence>
+          </span>
+        );
+      })}
+    </>
+  );
+};
 
 export default ToastManager;

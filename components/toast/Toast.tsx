@@ -1,10 +1,7 @@
 import * as React from 'react';
-
 import theme from 'theme';
-import Flex from '../layout/Flex';
-import Icon from '../icon/Icon';
-// import { Transition } from 'react-transition-group';
-// import Button from '../button/Button';
+import { Flex } from 'components/layout';
+import Icon from 'components/icon/Icon';
 import { Button } from 'components/form';
 
 export type ToastId = number | string;
@@ -22,31 +19,25 @@ export type ToastType = 'error' | 'success' | 'warning' | 'info' | 'basic';
 export interface IToast {
   title: string;
   duration?: number;
-  descriptaion?: string;
+  description?: string;
   position: ToastPosition;
   type?: ToastType;
-  id?: ToastId;
+  id: ToastId;
   isClosed?: boolean;
   renderToast?(...args: any): any;
   onCloseComplete?(): void;
   onClose?(id: ToastId, position: ToastPosition): void;
+  hide(): void;
 }
-
-const transitionStyles: any = {
-  entering: { opacity: 0, transform: 'translateY(40px) scale(1)' },
-  entered: { opacity: 1, transform: 'translateY(0) scale(1)' },
-  exiting: { opacity: 0, transform: 'translateY(0px) scale(0.9)' },
-};
 
 const Toast: React.FC<IToast> = ({
   title,
   description,
   onClose,
-  id,
   duration = 10000,
-  position,
   renderToast,
   type = 'basic',
+  hide,
 }) => {
   const [delay, setDelay] = React.useState(duration);
 
@@ -63,7 +54,7 @@ const Toast: React.FC<IToast> = ({
       return;
     }
     const id = setTimeout(() => {
-      onClose();
+      hide();
     }, delay);
 
     return () => {
@@ -102,7 +93,6 @@ const Toast: React.FC<IToast> = ({
         padding: '4px',
         transition: 'all 0.3s ease-in-out',
         willChange: 'transform, opacity, height',
-        // ...transitionStyles[state],
       }}
     >
       {renderToast ? (
@@ -132,7 +122,7 @@ const Toast: React.FC<IToast> = ({
             {description && <p css={{ color: theme.colors.whiteAlpha[700] }}>{description}</p>}
           </div>
           <Button
-            action={onClose}
+            action={hide}
             appearance="ghost"
             css={{
               height: '30px',

@@ -62,6 +62,10 @@ const GlobalStyles = () => {
           flex-direction: column;
         }
 
+        li {
+          list-style: none;
+        }
+
         #nprogress {
           pointer-events: none;
         }
