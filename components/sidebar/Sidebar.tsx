@@ -50,7 +50,13 @@ const Sidebar = () => {
         <GridItem lg={1} />
         <Flex>
           {routes.map((route: IRoute, index) => {
-            return <MenuItem active={router.pathname === route.path} {...route} key={index} />;
+            return (
+              <MenuItem
+                active={router.pathname.includes(route.path as string)}
+                {...route}
+                key={index}
+              />
+            );
           })}
         </Flex>
         <GridItem lg={1} />

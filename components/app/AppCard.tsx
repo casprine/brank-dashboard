@@ -41,7 +41,6 @@ const AppCard: React.FC<IProps> = ({
   description,
 }) => {
   const cardImageIndex = Math.floor(Math.random() * imageNames.length + 1);
-  console.log({ cardImageIndex });
   return (
     <Flex css={appCardStyles({ status })} stack onClick={onClick}>
       <Stack jc="space-between" ai="center" isInline>
