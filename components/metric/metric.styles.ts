@@ -6,11 +6,15 @@ const generateStyles: StyleFunction = () => {
     padding: '20px 30px',
     minHeight: '160px',
     margin: '-1px -1px 0 0',
-    transition: 'transform .4s',
+    transition: 'all 500ms ease',
     cursor: 'default',
     backgroundColor: theme.colors.white,
-    boxShadow: theme.shadows.md,
+    boxShadow: theme.shadows.sm,
     borderRadius: 6,
+
+    '&:hover': {
+      boxShadow: theme.shadows.xl,
+    },
 
     '.icon': {
       width: '25px',

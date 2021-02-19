@@ -3,12 +3,18 @@ import EmptyState from 'components/emptyState/EmptyState';
 import Header from 'components/header/Header';
 import AppCard from 'components/app/AppCard';
 import { Grid } from 'components/layout';
+import { useRouter } from 'next/router';
 
 const Apps = () => {
+  const router = useRouter();
+
   return (
     <DashboardLayout>
-      <Header title="Applications" action={() => {}} actionLabel="Create Application" />
-
+      <Header
+        title="Applications"
+        action={() => router.push('/apps/create')}
+        actionLabel="Create Application"
+      />
       <div className="container-large">
         <Grid lg={3}>
           <AppCard
@@ -17,7 +23,13 @@ const Apps = () => {
             description="Float gives you the credit and tools to ensure your business never runs out of cash"
           />
           <AppCard
-            name="Kilolwa"
+            name="Kilowa"
+            createdAt="2020-12-25T08:46:34.314716Z"
+            status="sandbox"
+            description="Payment insfrastructure for the next billion users"
+          />{' '}
+          <AppCard
+            name="Pilolo"
             createdAt="2020-12-25T08:46:34.314716Z"
             status="sandbox"
             description="Payment insfrastructure for the next billion users"
