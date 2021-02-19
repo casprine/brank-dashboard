@@ -30,9 +30,16 @@ interface IProps {
   name: string;
   createdAt: string | Date;
   status?: 'production' | 'sandbox';
+  description: string;
 }
 
-const AppCard: React.FC<IProps> = ({ onClick, name, createdAt, status = 'production' }) => {
+const AppCard: React.FC<IProps> = ({
+  onClick,
+  name,
+  createdAt,
+  status = 'production',
+  description,
+}) => {
   const cardImageIndex = Math.floor(Math.random() * imageNames.length + 1);
   console.log({ cardImageIndex });
   return (
@@ -42,6 +49,7 @@ const AppCard: React.FC<IProps> = ({ onClick, name, createdAt, status = 'product
         <div className="status">{status}</div>
       </Stack>
 
+      <p className="description">{description}</p>
       <Flex className="date" ai="center">
         <Icon icon={['fad', 'calendar-week']} color={theme.colors.gray[700]} size="lg" />
         <p>{format(new Date(createdAt), 'dd/MM/yyyy')}</p>

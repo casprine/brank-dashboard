@@ -15,7 +15,11 @@ const appCardStyles: StyleFunction = ({ status }: { status: 'string' }) => {
   };
 
   return {
-    height: '150px',
+    '*': {
+      // outline: '1px dotted red',
+    },
+
+    minHeight: '200px',
     boxShadow: theme.shadows.sm,
     backgroundColor: 'white',
     borderRadius: 6,
@@ -25,12 +29,17 @@ const appCardStyles: StyleFunction = ({ status }: { status: 'string' }) => {
     overflow: 'hidden',
     position: 'relative',
     // filter: 'grayscale(100%)',
+
     '&:hover': {
       filter: 'grayscale(0%)',
       boxShadow: theme.shadows.lg,
     },
-    '*': {
-      outline: '1px dotted red',
+
+    '.description': {
+      marginTop: 20,
+      color: theme.colors.gray[600],
+      fontSize: 14,
+      width: '80%',
     },
 
     '.status': {

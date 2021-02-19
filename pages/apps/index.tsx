@@ -11,8 +11,17 @@ const Apps = () => {
 
       <div className="container-large">
         <Grid lg={3}>
-          <AppCard name="Float" createdAt="2020-12-25T08:46:34.314716Z" />
-          <AppCard name="Kilolwa" createdAt="2020-12-25T08:46:34.314716Z" status="sandbox" />
+          <AppCard
+            name="Float"
+            createdAt="2020-12-25T08:46:34.314716Z"
+            description="Float gives you the credit and tools to ensure your business never runs out of cash"
+          />
+          <AppCard
+            name="Kilolwa"
+            createdAt="2020-12-25T08:46:34.314716Z"
+            status="sandbox"
+            description="Payment insfrastructure for the next billion users"
+          />
         </Grid>
 
         {/* <EmptyState
