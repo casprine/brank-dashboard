@@ -38,6 +38,7 @@ const GlobalStyles = () => {
           font-weight: 350;
           font-family: var(--regular-font);
           -webkit-font-smoothing: antialiased;
+          /* outline: 1px dotted red; */
         }
 
         .container {
