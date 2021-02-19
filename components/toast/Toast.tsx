@@ -1,7 +1,11 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Flex } from 'components/layout';
-import { add, remove } from './toastHelpers';
+import * as React from 'react';
+
+import theme from 'theme';
+import Flex from '../layout/Flex';
+import Icon from '../icon/Icon';
+// import { Transition } from 'react-transition-group';
+// import Button from '../button/Button';
+import { Button } from 'components/form';
 
 export type ToastId = number | string;
 
@@ -18,7 +22,7 @@ export type ToastType = 'error' | 'success' | 'warning' | 'info' | 'basic';
 export interface IToast {
   title: string;
   duration?: number;
-  description?: string;
+  descriptaion?: string;
   position: ToastPosition;
   type?: ToastType;
   id?: ToastId;
@@ -28,32 +32,122 @@ export interface IToast {
   onClose?(id: ToastId, position: ToastPosition): void;
 }
 
-const Toast = () => {
-  const [notifications, setNotifications] = useState([0]);
+const transitionStyles: any = {
+  entering: { opacity: 0, transform: 'translateY(40px) scale(1)' },
+  entered: { opacity: 1, transform: 'translateY(0) scale(1)' },
+  exiting: { opacity: 0, transform: 'translateY(0px) scale(0.9)' },
+};
+
+const Toast: React.FC<IToast> = ({
+  title,
+  description,
+  onClose,
+  id,
+  duration = 10000,
+  position,
+  renderToast,
+  type = 'basic',
+}) => {
+  const [delay, setDelay] = React.useState(duration);
+
+  function onMouseEnter() {
+    setDelay(null as any);
+  }
+
+  function onMouseLeave() {
+    setDelay(duration);
+  }
+
+  React.useEffect(() => {
+    if (delay == null) {
+      return;
+    }
+    const id = setTimeout(() => {
+      onClose();
+    }, delay);
+
+    return () => {
+      clearTimeout(id);
+    };
+  }, [delay]);
+
+  const styleMapping = {
+    error: {
+      background: theme.colors.red[500],
+      color: theme.colors.white,
+    },
+    success: {
+      background: theme.colors.green[500],
+      color: theme.colors.white,
+    },
+    warning: {
+      background: theme.colors.yellow[500],
+      color: theme.colors.gray[600],
+    },
+    info: {
+      background: theme.colors.blue[500],
+      color: theme.colors.white,
+    },
+    basic: {
+      background: theme.colors.white,
+      color: theme.colors.gray[600],
+    },
+  };
 
   return (
-    <Flex>
-      <div className="container">
-        <ul>
-          <AnimatePresence initial={false}>
-            {notifications.map((id) => (
-              <motion.li
-                key={id}
-                positionTransition
-                initial={{ opacity: 0, y: 50, scale: 0.3 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
-              >
-                <div onClick={() => setNotifications(remove(notifications, id))}>XX</div>
-              </motion.li>
-            ))}
-          </AnimatePresence>
-        </ul>
-        <button className="add" onClick={() => setNotifications(add(notifications))}>
-          +
-        </button>
-      </div>{' '}
-    </Flex>
+    <div
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      css={{
+        padding: '4px',
+        transition: 'all 0.3s ease-in-out',
+        willChange: 'transform, opacity, height',
+        // ...transitionStyles[state],
+      }}
+    >
+      {renderToast ? (
+        renderToast({ close: onClose })
+      ) : (
+        <Flex
+          ai="center"
+          css={{
+            padding: '2px 12px',
+            minHeight: '40px',
+            background: styleMapping[type].background,
+            borderRadius: '4px',
+            width: 'auto',
+            minWidth: '300px',
+            flexGrow: 0,
+          }}
+        >
+          <div css={{ width: 'calc(100% - 20px)', marginRight: '40px' }}>
+            <p
+              css={{
+                color: styleMapping[type].color,
+                fontFamily: theme.typography.fonts.regular,
+              }}
+            >
+              {title}
+            </p>
+            {description && <p css={{ color: theme.colors.whiteAlpha[700] }}>{description}</p>}
+          </div>
+          <Button
+            action={onClose}
+            appearance="ghost"
+            css={{
+              height: '30px',
+              padding: 0,
+              width: '30px',
+              borderRadius: '4px',
+              flexShrink: 0,
+              '&:hover': { background: theme.colors.whiteAlpha[200] },
+            }}
+          >
+            <Icon size="sm" color={styleMapping[type].color} icon={['far', 'times']}></Icon>
+          </Button>
+        </Flex>
+      )}
+    </div>
   );
 };
 

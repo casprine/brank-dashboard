@@ -1,10 +1,14 @@
-import Toast from 'components/toast/Toast';
+import { toast } from 'components/toast/Toaster';
 
 const TestPage = () => {
   return (
     <p>
       Hello world
-      <Toast />
+      <button
+        onClick={() => toast.notify({ title: 'Casprine', position: 'bottom', type: 'success' })}
+      >
+        Click
+      </button>
     </p>
   );
 };
