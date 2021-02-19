@@ -1,12 +1,9 @@
 import { DashboardLayout } from 'components/common';
-import EmptyState from 'components/emptyState/EmptyState';
-import Header from 'components/header/Header';
-import AppCard from 'components/app/AppCard';
-import { Grid } from 'components/layout';
-import { useRouter } from 'next/router';
+import { Grid, Flex } from 'components/layout';
 import { GridItem } from 'components/layout/Grid';
 import { Button, Form, Input } from 'components/form';
 import { useForm } from 'hooks';
+import { Stack } from 'components/layout';
 
 interface IProps {}
 
@@ -29,7 +26,15 @@ const CreateApplication: React.FC<IProps> = () => {
           <GridItem>
             <h2 className="title">Create application</h2>
             <p>Lorem ipssum dolor sit, amet consectetur adipisicing elit. Totam nihil distinctio</p>
-            <Form form={form} onSubmit={onSubmit}></Form>
+            <Form form={form} onSubmit={onSubmit}>
+              <Stack>
+                <Flex>
+                  <Input />
+                </Flex>
+
+                <Button>Create</Button>
+              </Stack>
+            </Form>
           </GridItem>
           <GridItem />
         </Grid>
