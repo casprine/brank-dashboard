@@ -1,4 +1,4 @@
-import { toast } from 'components/toast/Toaster';
+import toast from 'components/toast/Toaster';
 
 const TestPage = () => {
   return (

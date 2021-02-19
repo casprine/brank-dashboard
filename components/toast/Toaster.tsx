@@ -17,7 +17,7 @@ class Toaster {
       return;
     }
 
-    let portal;
+    let portal: any;
     const existingPortal = document.getElementById(portalId);
     if (existingPortal) {
       portal = existingPortal;
@@ -40,4 +40,4 @@ class Toaster {
   };
 }
 
-export const toast = new Toaster();
+export default new Toaster();

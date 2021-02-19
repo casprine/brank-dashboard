@@ -5,8 +5,6 @@ import { guardHermes } from 'utils/hermes';
 
 export const AppContext = createContext({} as any);
 
-const unprotectedRoutes = ['/tests'];
-
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [client, setClient] = useState<any>(null);
   const [showLoadingIndicator, setLoadingIndicator] = useState<boolean>(false);
@@ -14,8 +12,6 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (unprotectedRoutes.includes(router.pathname)) router.push(router.pathname);
-
     async function loadUserFromCookies() {
       const token = Cookies.get('token');
       const userId = Cookies.get('userId');
