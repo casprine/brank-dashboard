@@ -9,6 +9,7 @@ import { Stack } from 'components/layout';
 import theme from 'theme';
 import toast from 'components/toast/Toaster';
 import { guardHermes } from 'utils/hermes';
+import { LOGIN_SUCCESSFUL } from 'constants/requests';
 
 const CreateApplication: React.FC = () => {
   const [showLoadingIndicator, setShowLoading] = useState<boolean>(false);
@@ -34,7 +35,9 @@ const CreateApplication: React.FC = () => {
         method: 'POST',
       });
 
-      console.log({ data });
+      if (data.message === LOGIN_SUCCESSFUL) {
+        router.push('/apps');
+      }
     } catch (error) {
       setShowLoading(false);
       toast.notify({

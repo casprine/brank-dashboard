@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { guardHermes } from 'utils/hermes';
 import app from 'next/app';
 
-const Apps = ({ apps }) => {
+const Apps = ({ apps = [] }) => {
   const router = useRouter();
 
   console.log({ apps });
@@ -46,23 +46,24 @@ const Apps = ({ apps }) => {
   );
 };
 
-export async function getServerSideProps(context) {
-  const cookie = context.req.headers.cookie;
+// export async function getServerSideProps(context) {
+//   const cookie = context.req.headers.cookie;
 
-  console.log({ context: context.req.headers });
+//   console.log({ context: context.req.headers });
 
-  let { data } = await guardHermes({
-    url: '/applications',
-    method: 'GET',
-    token: cookie.split(';')[0].split('=')[1],
-  });
+//   let { data } = await guardHermes({
+//     url: '/applications',
+//     method: 'GET',
+//     token: cookie.split(';')[0].split('=')[1],
+//   });
 
-  console.log(JSON.stringify(data));
+//   console.log(JSON.stringify(data));
 
-  return {
-    props: {
-      apps: data?.data ?? [],
-    },
-  };
-}
+//   return {
+//     props: {
+//       apps: data?.data ?? [],
+//     },
+//   };
+// }
+
 export default Apps;
