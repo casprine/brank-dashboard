@@ -5,6 +5,7 @@ const generateStyles: StyleFunction = ({ hasError }) => {
   return {
     flexDirection: 'column',
     display: 'flex',
+    marginBottom: hasError ? 0 : 'auto',
 
     '.input': {
       borderRadius: '6px',

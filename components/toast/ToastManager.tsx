@@ -32,9 +32,11 @@ const defaultState = {
   bottomRight: [],
 };
 
-let counter: number = 0;
+// let counter: number = 0;
 
 const ToastManager: React.FC<IProps> = ({ registerMethods }) => {
+  const counter = React.useRef(0);
+
   const notify = (options: IToast) => {
     const toast = createToast(options);
     setState((prevToasts) => {
@@ -53,7 +55,7 @@ const ToastManager: React.FC<IProps> = ({ registerMethods }) => {
   const [state, setState] = React.useState<State>(defaultState);
 
   const createToast = (options: IToast): IToast => {
-    const id: ToastId = ++counter;
+    const id: ToastId = ++counter.current;
 
     return {
       ...options,

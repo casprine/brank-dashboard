@@ -39,10 +39,6 @@ const generateStyles: StyleFunction = ({ type }: { type: ToastType }) => {
     outline: '1px dotted white',
     willChange: 'transform, opacity, height',
 
-    '*': {
-      //   border: '1px dotted white',
-    },
-
     '.toast': {
       padding: '12px',
       background: styleMapping[type].background,

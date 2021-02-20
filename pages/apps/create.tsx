@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DashboardLayout } from 'components/common';
 import { Grid } from 'components/layout';
 import { useRouter } from 'next/router';
@@ -7,22 +8,45 @@ import { useForm } from 'hooks';
 import { Stack } from 'components/layout';
 import theme from 'theme';
 import toast from 'components/toast/Toaster';
+import { guardHermes } from 'utils/hermes';
 
 const CreateApplication: React.FC = () => {
+  const [showLoadingIndicator, setShowLoading] = useState<boolean>(false);
+
   const form = useForm({
     fields: {
       name: '',
       logo: '',
+      // description:
       callback_url: '',
     },
   });
 
   const router = useRouter();
 
-  function onSubmit() {
-    // router.push('/apps');
-    console.log('hello world');
-    toast.notify({ title: 'Test', position: 'bottomRight', type: 'success' });
+  async function onSubmit() {
+    setShowLoading(true);
+
+    try {
+      const { data } = await guardHermes({
+        url: '/applications',
+        data: form.inputState,
+        method: 'POST',
+      });
+
+      console.log({ data });
+    } catch (error) {
+      setShowLoading(false);
+      toast.notify({
+        title: 'Unable to create application',
+        type: 'error',
+        position: 'bottomRight',
+      });
+    } finally {
+      setShowLoading(false);
+    }
+
+    // toast.notify({ title: 'Test', position: 'bottomRight', type: 'success' });
   }
 
   return (
@@ -40,11 +64,32 @@ const CreateApplication: React.FC = () => {
               </Stack>
               <Form form={form} onSubmit={onSubmit}>
                 <Stack spacing={20}>
-                  <Input label="Name" placeholder="Name" />
-                  <Input label="Description" placeholder="Description" />
-                  <Input label="App logo" placeholder="App logo" />
-                  <Input label="Callback URL" placeholder="Callback URL" />
-                  <Button size="lg" type="submit" action={onSubmit}>
+                  <Input
+                    label="Name"
+                    placeholder="Name"
+                    name="name"
+                    value={form.inputState.name}
+                    error={form.errors.name}
+                    onChange={form.onChange}
+                  />
+                  {/* <Input label="Description" placeholder="Description" /> */}
+                  <Input
+                    label="App logo"
+                    placeholder="App logo"
+                    name="logo"
+                    value={form.inputState.logo}
+                    error={form.errors.logo}
+                    onChange={form.onChange}
+                  />
+                  <Input
+                    label="Callback URL"
+                    placeholder="Callback URL"
+                    name="callback_url"
+                    value={form.inputState.callback_url}
+                    error={form.errors.callback_url}
+                    onChange={form.onChange}
+                  />
+                  <Button isLoading={showLoadingIndicator} size="lg" type="submit">
                     Create
                   </Button>
                 </Stack>

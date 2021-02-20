@@ -9,6 +9,7 @@ interface IHermes {
   data?: any;
   url?: string;
   method?: 'POST' | 'GET' | 'PUT';
+  token?: string;
 }
 
 export function hermes({ data, url, method = 'POST' }: IHermes): AxiosPromise {
@@ -21,10 +22,10 @@ export function hermes({ data, url, method = 'POST' }: IHermes): AxiosPromise {
   });
 }
 
-export function guardHermes({ data, url, method }: IHermes): AxiosPromise {
-  const token = Cookies.get('token');
+export function guardHermes({ data, url, method = 'POST', token }: IHermes): AxiosPromise {
+  const cookie = Cookies.get('token');
 
-  if (!token) throw Error('No token found');
+  if (!token && !cookie) throw Error('No token found');
 
   const requestURL: string = `${baseUrl}${url}`;
 
@@ -32,6 +33,6 @@ export function guardHermes({ data, url, method }: IHermes): AxiosPromise {
     method,
     url: requestURL,
     data: data,
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token || cookie}` },
   });
 }

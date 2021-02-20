@@ -35,7 +35,7 @@ const Toast: React.FC<IToast> = ({
   title,
   description = `You can find your apps on the app's page`,
   onClose,
-  duration = 10000,
+  duration = 5000,
   renderToast,
   type = 'basic',
   hide,
