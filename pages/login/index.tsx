@@ -39,8 +39,8 @@ const LoginPage = () => {
         const client = data?.data?.client;
         const token = data?.data.token;
 
-        Cookies.set('token', token, { expires: 60 });
-        Cookies.set('userId', client.id, { expires: 60 });
+        Cookies.set('token', token, { expires: 7 });
+        Cookies.set('userId', client.id, { expires: 7 });
         updateClient(client);
         router.push('/');
       }

@@ -99,7 +99,7 @@ const ToastManager: React.FC<IProps> = ({ registerMethods }) => {
                     <Toast
                       key={toast.id}
                       {...toast}
-                      hide={() => destroy(toast?.id, toast.position)}
+                      hide={() => destroy(toast?.id as string | number, toast.position)}
                     />
                   </motion.li>
                 );

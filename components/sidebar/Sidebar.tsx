@@ -21,6 +21,11 @@ const Sidebar = () => {
   const router = useRouter();
   const { client, logout } = useAppProvider();
 
+  const isRouteActivePath = (path: string) => {
+    if (router.pathname === '/' && path === '/') return true;
+    return router.pathname.includes(path) && path !== '/';
+  };
+
   return (
     <Flex css={sideBarStyles()} jc="space-between" ai="center" stack>
       <Flex className="company-header" ai="center" jc="space-between">
@@ -51,11 +56,7 @@ const Sidebar = () => {
         <Flex>
           {routes.map((route: IRoute, index) => {
             return (
-              <MenuItem
-                active={router.pathname.includes(route.path as string)}
-                {...route}
-                key={index}
-              />
+              <MenuItem active={isRouteActivePath(route.path as string)} {...route} key={index} />
             );
           })}
         </Flex>

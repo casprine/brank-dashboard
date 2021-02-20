@@ -3,6 +3,7 @@ import theme from 'theme';
 import { Flex } from 'components/layout';
 import Icon from 'components/icon/Icon';
 import { Button } from 'components/form';
+import generateStyles, { styleMapping } from './toast.styles';
 
 export type ToastId = number | string;
 
@@ -22,17 +23,17 @@ export interface IToast {
   description?: string;
   position: ToastPosition;
   type?: ToastType;
-  id: ToastId;
+  id?: ToastId;
   isClosed?: boolean;
   renderToast?(...args: any): any;
   onCloseComplete?(): void;
   onClose?(id: ToastId, position: ToastPosition): void;
-  hide(): void;
+  hide?(): void;
 }
 
 const Toast: React.FC<IToast> = ({
   title,
-  description,
+  description = `You can find your apps on the app's page`,
   onClose,
   duration = 10000,
   renderToast,
@@ -54,7 +55,7 @@ const Toast: React.FC<IToast> = ({
       return;
     }
     const id = setTimeout(() => {
-      hide();
+      hide && hide();
     }, delay);
 
     return () => {
@@ -62,78 +63,29 @@ const Toast: React.FC<IToast> = ({
     };
   }, [delay]);
 
-  const styleMapping = {
-    error: {
-      background: theme.colors.red[500],
-      color: theme.colors.white,
-    },
-    success: {
-      background: theme.colors.green[500],
-      color: theme.colors.white,
-    },
-    warning: {
-      background: theme.colors.yellow[500],
-      color: theme.colors.gray[600],
-    },
-    info: {
-      background: theme.colors.blue[500],
-      color: theme.colors.white,
-    },
-    basic: {
-      background: theme.colors.white,
-      color: theme.colors.gray[600],
-    },
-  };
-
   return (
-    <div
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      css={{
-        padding: '4px',
-        transition: 'all 0.3s ease-in-out',
-        willChange: 'transform, opacity, height',
-      }}
-    >
+    <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} css={generateStyles({ type })}>
       {renderToast ? (
         renderToast({ close: onClose })
       ) : (
-        <Flex
-          ai="center"
-          css={{
-            padding: '2px 12px',
-            minHeight: '40px',
-            background: styleMapping[type].background,
-            borderRadius: '4px',
-            width: 'auto',
-            minWidth: '300px',
-            flexGrow: 0,
-          }}
-        >
-          <div css={{ width: 'calc(100% - 20px)', marginRight: '40px' }}>
-            <p
-              css={{
-                color: styleMapping[type].color,
-                fontFamily: theme.typography.fonts.regular,
-              }}
+        <Flex ai="flex-start" className="toast">
+          {type === 'success' && (
+            <Flex
+              className="status-icon-container"
+              ai="center"
+              jc="center"
+              css={{ backgroundColor: theme.colors.green[400] }}
             >
-              {title}
-            </p>
-            {description && <p css={{ color: theme.colors.whiteAlpha[700] }}>{description}</p>}
+              <Icon icon={['fas', 'check']} size="xs" color={theme.colors.green[900]} />
+            </Flex>
+          )}
+
+          <div css={{ width: 'calc(100% - 30px)', marginRight: '40px' }}>
+            <p className="title">{title}</p>
+            {description && <p className="description">{description}</p>}
           </div>
-          <Button
-            action={hide}
-            appearance="ghost"
-            css={{
-              height: '30px',
-              padding: 0,
-              width: '30px',
-              borderRadius: '4px',
-              flexShrink: 0,
-              '&:hover': { background: theme.colors.whiteAlpha[200] },
-            }}
-          >
-            <Icon size="sm" color={styleMapping[type].color} icon={['far', 'times']}></Icon>
+          <Button action={hide} appearance="ghost" className="close-btn">
+            <Icon size="sm" icon={['far', 'times']} color={styleMapping[type].title} />
           </Button>
         </Flex>
       )}

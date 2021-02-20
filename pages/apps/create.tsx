@@ -1,11 +1,12 @@
 import { DashboardLayout } from 'components/common';
-import { Grid, Flex } from 'components/layout';
+import { Grid } from 'components/layout';
 import { useRouter } from 'next/router';
 import { GridItem } from 'components/layout/Grid';
 import { Button, Form, Input } from 'components/form';
 import { useForm } from 'hooks';
 import { Stack } from 'components/layout';
 import theme from 'theme';
+import toast from 'components/toast/Toaster';
 
 const CreateApplication: React.FC = () => {
   const form = useForm({
@@ -19,7 +20,9 @@ const CreateApplication: React.FC = () => {
   const router = useRouter();
 
   function onSubmit() {
-    router.push('/apps');
+    // router.push('/apps');
+    console.log('hello world');
+    toast.notify({ title: 'Test', position: 'bottomRight', type: 'success' });
   }
 
   return (
@@ -41,7 +44,7 @@ const CreateApplication: React.FC = () => {
                   <Input label="Description" placeholder="Description" />
                   <Input label="App logo" placeholder="App logo" />
                   <Input label="Callback URL" placeholder="Callback URL" />
-                  <Button size="lg" type="submit">
+                  <Button size="lg" type="submit" action={onSubmit}>
                     Create
                   </Button>
                 </Stack>
