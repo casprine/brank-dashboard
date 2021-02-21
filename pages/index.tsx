@@ -5,23 +5,15 @@ import { Grid } from 'components/layout';
 import { formatMoney } from 'utils/helpers';
 import theme from 'theme';
 import Header from 'components/header/Header';
-import brank from 'brank-connect';
 import { GridItem } from 'components/layout/Grid';
 import Chart, { Chart2 } from 'components/charts';
-
-function useBrank() {
-  const instance = React.useMemo(() => {
-    const b = brank({ key: 'casprine', onSuccess: () => {} });
-
-    b.setup();
-    return b;
-  }, []);
-
-  return instance;
-}
+import { useBrank } from 'hooks';
 
 const DashboardHome = () => {
-  const brankInstance = useBrank();
+  const brankInstance = useBrank({
+    key: 'casprine',
+    onSuccess: () => {},
+  });
 
   return (
     <DashboardLayout css={generateStyles()}>

@@ -7,6 +7,7 @@ const headerStyles: StyleFunction = () => {
     marginTop: '1rem',
 
     '.title': {
+      textTransform: 'capitalize',
       color: theme.colors.primary,
       fontFamily:
         '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif',

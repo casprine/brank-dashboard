@@ -16,6 +16,7 @@ const sideBarStyles: StyleFunction = () => {
       backgroundColor: theme.colors.gray[200],
       borderRadius: '50%',
     },
+
     '.menu-links': {
       padding: '15px 4rem',
       width: '100%',

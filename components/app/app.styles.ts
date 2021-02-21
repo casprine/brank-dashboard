@@ -15,7 +15,7 @@ const appCardStyles: StyleFunction = ({ status }: { status: 'string' }) => {
   };
 
   return {
-    minHeight: '200px',
+    minHeight: '120px',
     boxShadow: theme.shadows.sm,
     backgroundColor: 'white',
     borderRadius: 6,
@@ -31,7 +31,7 @@ const appCardStyles: StyleFunction = ({ status }: { status: 'string' }) => {
     },
 
     '.description': {
-      marginTop: 20,
+      margin: '20px 0',
       color: theme.colors.gray[600],
       fontSize: 14,
       width: '80%',
@@ -62,6 +62,7 @@ const appCardStyles: StyleFunction = ({ status }: { status: 'string' }) => {
       fontWeight: 800,
       fontFamily: theme.typography.fonts.sans,
       color: theme.colors.gray[700],
+      textTransform: 'capitalize',
     },
 
     '.img': {

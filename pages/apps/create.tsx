@@ -18,7 +18,7 @@ const CreateApplication: React.FC = () => {
     fields: {
       name: '',
       logo: '',
-      // description:
+      description: '',
       callback_url: '',
     },
   });
@@ -36,6 +36,11 @@ const CreateApplication: React.FC = () => {
       });
 
       if (data.message === LOGIN_SUCCESSFUL) {
+        toast.notify({
+          title: 'Application created succesfully',
+          position: 'bottomRight',
+          type: 'success',
+        });
         router.push('/apps');
       }
     } catch (error) {
@@ -48,8 +53,6 @@ const CreateApplication: React.FC = () => {
     } finally {
       setShowLoading(false);
     }
-
-    // toast.notify({ title: 'Test', position: 'bottomRight', type: 'success' });
   }
 
   return (
@@ -75,7 +78,14 @@ const CreateApplication: React.FC = () => {
                     error={form.errors.name}
                     onChange={form.onChange}
                   />
-                  {/* <Input label="Description" placeholder="Description" /> */}
+                  <Input
+                    label="Description"
+                    name="description"
+                    placeholder="Description"
+                    value={form.inputState.description}
+                    error={form.errors.description}
+                    onChange={form.onChange}
+                  />
                   <Input
                     label="App logo"
                     placeholder="App logo"
@@ -85,8 +95,8 @@ const CreateApplication: React.FC = () => {
                     onChange={form.onChange}
                   />
                   <Input
-                    label="Callback URL"
-                    placeholder="Callback URL"
+                    label="Webhook"
+                    placeholder="Webhook"
                     name="callback_url"
                     value={form.inputState.callback_url}
                     error={form.errors.callback_url}

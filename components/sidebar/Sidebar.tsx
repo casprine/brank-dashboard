@@ -11,10 +11,10 @@ import Icon from 'components/icon/Icon';
 const routes: IRoute[] = [
   { label: 'Home', path: '/' },
   { label: 'Apps', path: '/apps' },
-  { label: 'Products', path: '/products' },
-  { label: 'Customers', path: '/customers' },
-  { label: 'Developers', path: '/developers' },
-  { label: 'Settings', path: '/settings' },
+  // { label: 'Products', path: '/products' },
+  // { label: 'Customers', path: '/customers' },
+  // { label: 'Developers', path: '/developers' },
+  // { label: 'Settings', path: '/settings' },
 ];
 
 const Sidebar = () => {
@@ -53,7 +53,7 @@ const Sidebar = () => {
 
       <Grid lg={3} className="menu-links">
         <GridItem lg={1} />
-        <Flex>
+        <Flex jc="center" ai="center">
           {routes.map((route: IRoute, index) => {
             return (
               <MenuItem active={isRouteActivePath(route.path as string)} {...route} key={index} />

@@ -74,3 +74,14 @@ export interface IMetric {
   title: string;
   footer?: string;
 }
+
+export interface IApp {
+  name: string;
+  public_key: string;
+  created_at: string;
+  environment: 'staging' | 'production';
+  description?: string;
+  id: number;
+  logo: string;
+  access_token: string;
+}
