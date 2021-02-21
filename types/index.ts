@@ -75,7 +75,7 @@ export interface IMetric {
   footer?: string;
 }
 
-export interface IApp {
+export interface IApplicationProps {
   name: string;
   public_key: string;
   created_at: string;
