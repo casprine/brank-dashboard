@@ -1,14 +1,28 @@
+import React from 'react';
 import { Flex } from 'components/layout';
 import { DashboardLayout } from 'components/common';
 import Header from 'components/header/Header';
 import { guardHermes } from 'utils/hermes';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
-import { useBrank } from 'hooks';
+// import { useBrank } from 'hooks';
 import { IApplicationProps } from 'types';
+import brank from '../../../js-sdk/dist/index';
 
 interface IProps {
   app: IApplicationProps;
+}
+
+export function useBrank({ key, onSuccess }) {
+  const instance = React.useMemo(() => {
+    const b = brank({ key, onSuccess });
+
+    console.log('bb:::::', b);
+    b.setup();
+    return b;
+  }, [key]);
+
+  return instance;
 }
 
 const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
@@ -17,10 +31,10 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
 
   const brankInstance = useBrank({
     key: app?.public_key,
-    onSuccess: () => {},
+    onSuccess: (code: string) => console.log({ code }),
   });
 
-  console.log({ app });
+  console.log('roehoithrhutuhrhtiuruhithriuth', brankInstance);
 
   return (
     <DashboardLayout>

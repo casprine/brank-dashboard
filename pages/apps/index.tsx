@@ -50,17 +50,27 @@ const Apps: React.FC<IProps> = ({ apps }) => {
 export async function getServerSideProps(context: any) {
   const cookie = context.req.headers.cookie;
 
-  let { data } = await guardHermes({
-    url: '/applications',
-    method: 'GET',
-    token: cookie.split(';')[0].split('=')[1],
-  });
+  const token = cookie
+    .split(';')
+    .filter((item: string) => item.includes('token'))[0]
+    .split('=')[1];
 
-  return {
-    props: {
-      apps: data.data.apps ?? [],
-    },
-  };
+  try {
+    let { data } = await guardHermes({
+      url: '/applications',
+      method: 'GET',
+      token,
+    });
+
+    const apps = data?.data?.apps;
+    if (apps) {
+      return {
+        props: {
+          apps: apps ?? [],
+        },
+      };
+    }
+  } catch (error) {}
 }
 
 export default Apps;
