@@ -30,7 +30,10 @@ const Sidebar = () => {
     <Flex css={sideBarStyles()} jc="space-between" ai="center" stack>
       <Flex className="company-header" ai="center" jc="space-between">
         <Flex>
-          <Image src="/images/brank-logo.png" width={35} height={35} className="company-logo" />
+          <Flex className="company-logo">
+            <Image src="/images/brank-logo.png" width={30} height={30} />
+          </Flex>
+
           <Stack className="company-details" jc="center">
             <p className="company-name">{client?.['company_name']}</p>
             <p className="username">

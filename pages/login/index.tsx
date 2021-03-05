@@ -56,7 +56,13 @@ const LoginPage = () => {
       <div className="container" css={generateStyles()}>
         <div className="auth-container">
           <div className="logo-container">
-            <Image src="/images/brank-logo.png" alt="brank-logo" width={60} height={60} />
+            <Image
+              className="logo"
+              src="/images/brank-logo.png"
+              alt="brank-logo"
+              width={50}
+              height={50}
+            />
           </div>
 
           <div className="info">
@@ -66,13 +72,13 @@ const LoginPage = () => {
             </Link>
           </div>
 
-          <svg width={452} height={12} viewBox="0 0 452 12" fill="none">
+          {/* <svg width={452} height={12} viewBox="0 0 452 12" fill="none">
             <path
               d="M1 6C6-.667 11-.667 16 6s10 6.667 15 0S41-.667 46 6s10 6.667 15 0S71-.667 76 6s10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0"
               stroke="#1F2937"
               strokeWidth={1.5}
             />
-          </svg>
+          </svg> */}
 
           <Form form={form} onSubmit={loginUser}>
             <Stack className="form">

@@ -31,6 +31,8 @@ const sideBarStyles: StyleFunction = () => {
     '.company-logo': {
       borderRadius: 6,
       cursor: 'default',
+      boxShadow: `${theme.shadows.md} !important`,
+      padding: '10px',
     },
 
     '.footer': {

@@ -5,8 +5,8 @@ import { Grid } from 'components/layout';
 import { formatMoney } from 'utils/helpers';
 import theme from 'theme';
 import Header from 'components/header/Header';
-import { GridItem } from 'components/layout/Grid';
-import Chart, { Chart2 } from 'components/charts';
+// import { GridItem } from 'components/layout/Grid';
+// import Chart, { Chart2 } from 'components/charts';
 import { useBrank } from 'hooks';
 
 const DashboardHome = () => {

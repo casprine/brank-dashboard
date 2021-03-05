@@ -58,9 +58,15 @@ const SignupPage = () => {
       <div className="container" css={generateStyles()}>
         <div className="auth-container">
           <Stack>
-            <div className="logo-container">
-              <Image src="/images/brank-logo.png" alt="brank-logo" width={60} height={60} />
-            </div>
+            <Flex ai="center" jc="center" className="logo-container">
+              <Image
+                className="logo"
+                src="/images/brank-logo.png"
+                alt="brank-logo"
+                width={50}
+                height={50}
+              />
+            </Flex>
 
             <div className="info">
               <p>Already have a Brank account?</p>
@@ -70,13 +76,13 @@ const SignupPage = () => {
             </div>
           </Stack>
 
-          <svg width={452} height={12} viewBox="0 0 452 12" fill="none">
+          {/* <svg width={452} height={12} viewBox="0 0 452 12" fill="none">
             <path
               d="M1 6C6-.667 11-.667 16 6s10 6.667 15 0S41-.667 46 6s10 6.667 15 0S71-.667 76 6s10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0 10-6.667 15 0 10 6.667 15 0"
               stroke="#1F2937"
               strokeWidth={1.5}
             />
-          </svg>
+          </svg> */}
 
           <Form form={form} onSubmit={createAccount}>
             <Stack className="form">
@@ -156,7 +162,7 @@ const SignupPage = () => {
               </div>
 
               <div className="row">
-                <Button size="lg" type="submit" isLoading={showLoadingIndicator}>
+                <Button type="submit" isLoading={showLoadingIndicator}>
                   <p className="btn-text">Get started</p>
                 </Button>
               </div>
@@ -174,8 +180,12 @@ export function generateStyles() {
       marginBottom: '20px',
     },
     '.logo-container': {
-      padding: '0 50px',
       marginBottom: '30px',
+      marginLeft: '50px',
+      padding: '10px',
+      boxShadow: theme.shadows.md,
+      width: '60px',
+      borderRadius: '6px',
     },
     '.info': {
       padding: '0 50px',
@@ -211,7 +221,6 @@ export function generateStyles() {
       color: 'white',
       textShadow: '1px 1px 1px var(--primary-green)',
       fontWeight: 500,
-      fontSize: '17px',
     },
 
     '.terms-checkbox': {
