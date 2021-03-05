@@ -21,6 +21,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
           const response = await guardHermes({
             url: `/clients/${userId}`,
             method: 'GET',
+            token,
           });
 
           if (response?.data?.message === 'success') {

@@ -23,7 +23,6 @@ const DashboardHome = () => {
         action={() => brankInstance.open()}
         actionLabel="Launch Demo"
       />
-
       <section className="container-large">
         <Grid lg={3}>
           <Metric icon="exchange-alt" title="API calls" footer="Estimated api calls">
@@ -35,17 +34,6 @@ const DashboardHome = () => {
           <Metric title="Dept" icon="money-check-alt" footer="How much you owe us.">
             <div className="metric-amount">₵{formatMoney(34333)}</div>
           </Metric>
-        </Grid>
-      </section>
-
-      <section className="container-large graph-container">
-        <Grid lg={3}>
-          <GridItem span={2} className="graph">
-            <Chart />
-          </GridItem>
-          <GridItem className="graph">
-            <Chart2 />
-          </GridItem>
         </Grid>
       </section>
     </DashboardLayout>
