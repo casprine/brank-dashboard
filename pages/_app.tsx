@@ -17,7 +17,6 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <AppProvider>
         <GlobalStyles />
-
         <ProtectedRoute>
           <Component {...pageProps} />
         </ProtectedRoute>

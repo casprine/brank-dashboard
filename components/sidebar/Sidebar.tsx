@@ -11,10 +11,10 @@ import Icon from 'components/icon/Icon';
 const routes: IRoute[] = [
   { label: 'Home', path: '/' },
   { label: 'Apps', path: '/apps' },
-  { label: 'Products', path: '/products' },
-  { label: 'Customers', path: '/customers' },
-  { label: 'Developers', path: '/developers' },
-  { label: 'Settings', path: '/settings' },
+  // { label: 'Products', path: '/products' },
+  // { label: 'Customers', path: '/customers' },
+  // { label: 'Developers', path: '/developers' },
+  // { label: 'Settings', path: '/settings' },
 ];
 
 const Sidebar = () => {

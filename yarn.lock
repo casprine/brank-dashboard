@@ -871,10 +871,10 @@ braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-brank-connect@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.npmjs.org/brank-connect/-/brank-connect-0.1.7.tgz#22d1b7b908210150d9b2b5e27a6ee3e5685efa2b"
-  integrity sha512-zyuOQF6i23Lk74sOOqJxinc/x5O05Re2+iMgxOafVCgWKOVBbhP0m8HcCPd405ej+f+TLsBThHe9xXlyivGNwQ==
+brank-connect@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.npmjs.org/brank-connect/-/brank-connect-0.1.8.tgz#8b7017f7ba92ef6e14a50393f64c847825eeed5b"
+  integrity sha512-cLsr++ftnDGSZkRhcjUSSDdOmyumTaDpAUxTA1v7ENap1D/Z70abE0WRdzJlLOCaj+/hvAfhgG0QE3FgLv1ReA==
   dependencies:
     "@types/node" "^14.14.10"
     tslib "^2.0.3"

@@ -7,21 +7,15 @@ import theme from 'theme';
 import Header from 'components/header/Header';
 // import { GridItem } from 'components/layout/Grid';
 // import Chart, { Chart2 } from 'components/charts';
-import { useBrank } from 'hooks';
 
 const DashboardHome = () => {
-  const brankInstance = useBrank({
-    key: 'casprine',
-    onSuccess: () => {},
-  });
-
   return (
     <DashboardLayout css={generateStyles()}>
       <Header
         title="Overview"
         subTitle="Today's a great day to do business"
-        action={() => brankInstance.open()}
-        actionLabel="Launch Demo"
+        // action={() => brankInstance.open()}
+        // actionLabel="Launch Demo"
       />
       <section className="container-large">
         <Grid lg={3}>
