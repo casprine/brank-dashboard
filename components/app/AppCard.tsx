@@ -29,24 +29,18 @@ interface IProps {
   onClick?: () => void;
   name: string;
   created_at: string | Date;
-  status?: 'production' | 'sandbox';
+  environment?: 'production' | 'sandbox';
   description: string;
 }
 
-const AppCard: React.FC<IProps> = ({
-  onClick,
-  name,
-  created_at,
-  status = 'production',
-  description,
-}) => {
+const AppCard: React.FC<IProps> = ({ onClick, name, created_at, environment, description }) => {
   const cardImageIndex = Math.floor(Math.random() * imageNames.length + 1);
 
   return (
-    <Flex css={appCardStyles({ status })} stack onClick={onClick}>
+    <Flex css={appCardStyles({ status: environment })} stack onClick={onClick}>
       <Stack jc="space-between" ai="center" isInline>
         <p className="name">{name}</p>
-        <div className="status">{status}</div>
+        <div className="status">{environment}</div>
       </Stack>
 
       {description && <p className="description">{description}</p>}

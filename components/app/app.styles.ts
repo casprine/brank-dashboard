@@ -8,7 +8,7 @@ const appCardStyles: StyleFunction = ({ status }: { status: 'string' }) => {
       fg: theme.colors.green[800],
     },
 
-    sandbox: {
+    development: {
       bg: theme.colors.blue[200],
       fg: theme.colors.blue[800],
     },

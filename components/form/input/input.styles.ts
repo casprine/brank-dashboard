@@ -1,7 +1,15 @@
 import { StyleFunction } from 'types';
 import theme from 'theme';
 
-const generateStyles: StyleFunction = ({ hasError }) => {
+const generateStyles: StyleFunction = ({ hasError, disabled }) => {
+  const bg = {
+    error: theme.colors.orange[100],
+    disabled: theme.colors.gray[200],
+    default: theme.colors.grey,
+  };
+
+  const state = hasError ? 'error' : disabled ? 'disabled' : 'default';
+
   return {
     flexDirection: 'column',
     display: 'flex',
@@ -18,8 +26,9 @@ const generateStyles: StyleFunction = ({ hasError }) => {
       outline: 'none',
       boxShadow: theme.shadows.xs,
       fontWeight: 600,
-      backgroundColor: hasError ? theme.colors.orange[100] : theme.colors.grey,
+      backgroundColor: bg[state],
 
+      color: theme.colors.black,
       '&:focus': {
         boxShadow: hasError
           ? '0px 0px 0px 4px rgb(251 146 60 / 20%)'

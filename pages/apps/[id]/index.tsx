@@ -1,5 +1,5 @@
-import React from 'react';
-import { Flex, Stack, Grid } from 'components/layout';
+import React, { useState } from 'react';
+import { Flex, Stack } from 'components/layout';
 import { DashboardLayout } from 'components/common';
 import { guardHermes } from 'utils/hermes';
 import { useRouter } from 'next/router';
@@ -9,6 +9,12 @@ import theme from 'theme';
 import { IApplicationProps, StyleFunction } from 'types';
 import { Button } from 'components/form';
 import { truncateString, copyText } from 'utils/helpers';
+import Tab from 'components/Tab/Tab';
+import ApplicationForm from 'components/application/ApplicationForm';
+import { useForm } from 'hooks';
+import { LOGIN_SUCCESSFUL } from 'constants/requests';
+import toast from 'components/toast/Toaster';
+import { Input } from 'components/form';
 
 interface IProps {
   app: IApplicationProps;
@@ -18,18 +24,117 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
   const router = useRouter();
   if (!app?.id) router.push('/apps');
 
+  const [client, setClient] = useState(app);
+
   const brankInstance = useBrank({
-    key: app?.public_key,
-    onSuccess: (code: string) => console.log({ code }),
+    key: client?.public_key,
+    onSuccess: (code: string) =>
+      toast.notify({ title: 'Link succesful, ', description: `code: ${code}`, position: 'top' }),
   });
+
+  const [editingApplication, setEditingApplication] = React.useState(false);
+
+  const form = useForm({
+    fields: {
+      name: app?.name,
+      logo: app?.logo,
+      description: app?.description,
+      callback_url: app?.callback_url,
+    },
+  });
+
+  async function onEditApplication() {
+    setEditingApplication(true);
+
+    try {
+      const { data } = await guardHermes({
+        url: `/applications/id/${app.id}`,
+        data: form.inputState,
+        method: 'PUT',
+      });
+
+      if (data.message === LOGIN_SUCCESSFUL) {
+        toast.notify({
+          title: 'Application updated succesfully',
+          position: 'bottomRight',
+          type: 'success',
+        });
+
+        setClient(data.data);
+
+        // router.push(`/apps/${app.id}`);
+      }
+    } catch (error) {
+      setEditingApplication(false);
+      toast.notify({
+        title: 'Unable to update application, please try again',
+        type: 'error',
+        position: 'bottomRight',
+      });
+    } finally {
+      setEditingApplication(false);
+    }
+  }
+
+  const TabRoutes = [
+    {
+      label: 'Details',
+      render: (
+        <ApplicationForm
+          app={app}
+          form={form}
+          isLoading={editingApplication}
+          onSubmit={onEditApplication}
+        />
+      ),
+    },
+
+    {
+      label: 'Keys',
+      render: () => {
+        return (
+          <Flex stack className="api-keys">
+            <h5 className="title">Keys</h5>
+
+            <Stack jc="flex-start" ai="flex-start" styles={{ marginTop: 30 }}>
+              <Flex ai="center" jc="space-between" style={{ width: '100%' }}>
+                <p>Access Token</p>
+                <div
+                  className="copy-action"
+                  onClick={() => copyText(client?.access_token, 'Access token copied')}
+                >
+                  Copy
+                </div>
+              </Flex>
+
+              <Input value={client?.access_token} className="copy-value" />
+            </Stack>
+            <Stack jc="flex-start" ai="flex-start" styles={{ marginTop: 20 }}>
+              <Flex ai="center" jc="space-between" style={{ width: '100%' }}>
+                <p>Public Key</p>
+                <div
+                  className="copy-action"
+                  onClick={() => copyText(client?.public_key, 'Public key copied')}
+                >
+                  Copy
+                </div>
+              </Flex>
+
+              <Input value={client?.public_key} className="copy-value" />
+            </Stack>
+          </Flex>
+        );
+      },
+    },
+  ];
 
   return (
     <DashboardLayout css={generateStyles()}>
       <Flex ai="center" jc="space-between" className="container-large header">
         <Flex stack>
-          <div className="title">{app?.name}</div>
+          <div className="title">{client?.name}</div>
           <div className="sub-title">
-            {`Created on ${format(new Date(app?.created_at), 'dd/MM/yyyy')}`}
+            {`Created on ${format(new Date(client?.created_at), 'dd/MM/yyyy')}`}
           </div>
         </Flex>
 
@@ -40,11 +145,12 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
           <Button size="md" appearance="outline">
             Go Live
           </Button>
-          <Button size="md" appearance="outline" action={() => router.push(`/apps/${app.id}/edit`)}>
-            Edit
-          </Button>
         </Stack>
       </Flex>
+
+      <div className="container-large">
+        <Tab routes={TabRoutes} />
+      </div>
 
       {/* <section className="container-large">
         <Grid lg={3}>
@@ -59,35 +165,6 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
           </Metric>
         </Grid>
       </section> */}
-
-      <Grid className="container-large api-keys" lg={3}>
-        <Stack jc="flex-start" ai="flex-start" css={{ marginRight: 50 }}>
-          <Flex ai="center" jc="space-between" style={{ width: '100%' }}>
-            <p>Access Token</p>
-            <div
-              className="copy-action"
-              onClick={() => copyText(app?.access_token, 'Access token copied')}
-            >
-              Copy
-            </div>
-          </Flex>
-          <div className="copy-value">{truncateString(app?.access_token, 50)}</div>
-        </Stack>
-        <Stack jc="flex-start" ai="flex-start" css={{ width: '100%' }}>
-          <Flex ai="center" jc="space-between" style={{ width: '100%' }}>
-            <p>Public Key</p>
-            <div
-              className="copy-action"
-              onClick={() => copyText(app?.public_key, 'Public key copied')}
-            >
-              Copy
-            </div>
-          </Flex>
-          <div className="copy-value" style={{ width: '100%' }}>
-            {app?.public_key}
-          </div>
-        </Stack>
-      </Grid>
     </DashboardLayout>
   );
 };
@@ -96,27 +173,43 @@ const generateStyles: StyleFunction = () => {
   return {
     '.header': {
       marginBottom: '1.5rem',
-      marginTop: '1rem',
+      marginTop: '2rem',
     },
     '.api-keys': {
-      marginTop: 40,
-    },
-
-    '.copy-value': {
-      padding: 10,
-      color: 'white',
-      backgroundColor: theme.colors.primary,
+      margin: '20px 0',
+      backgroundColor: 'white',
+      padding: '25px 20px',
+      boxShadow: theme.shadows.sm,
       borderRadius: 6,
-      fontFamily: theme.typography.fonts.sans,
-      fontWeight: 600,
-    },
+      width: '50%',
 
-    '.copy-action': {
-      backgroundColor: theme.colors.primary,
-      borderRadius: 6,
-      color: 'white',
-      padding: '5px 15px',
-      userSelect: 'none',
+      '.input-container': {
+        width: '100%',
+        margin: 0,
+        padding: '0 !important',
+      },
+
+      p: {
+        fontFamily: theme.typography.fonts.sans,
+        fontWeight: 600,
+      },
+
+      '.copy-value': {
+        padding: 10,
+        color: 'white',
+        borderRadius: 6,
+        fontFamily: theme.typography.fonts.sans,
+        fontWeight: 600,
+      },
+
+      '.copy-action': {
+        backgroundColor: theme.colors.primary,
+        borderRadius: 6,
+        color: 'white',
+        padding: '8px 15px',
+        userSelect: 'none',
+        fontSize: 15,
+      },
     },
 
     '.title': {
@@ -160,17 +253,24 @@ export async function getServerSideProps(context: any) {
   const id = context?.query?.id;
   const cookie = context.req.headers.cookie;
 
-  let { data } = await guardHermes({
-    url: `/applications/id/${id}`,
-    method: 'GET',
-    token: cookie.split(';')[0].split('=')[1],
-  });
+  try {
+    let { data } = await guardHermes({
+      url: `/applications/id/${id}`,
+      method: 'GET',
+      token: cookie.split(';')[0].split('=')[1],
+    });
 
-  return {
-    props: {
-      app: data.data.app ?? {},
-    },
-  };
+    return {
+      props: {
+        app: data.data.app ?? {},
+      },
+    };
+  } catch (error) {
+    return {
+      props: {},
+      error: {},
+    };
+  }
 }
 
 export default ApplicationDetailView;

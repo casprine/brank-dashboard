@@ -21,11 +21,13 @@ const Input: React.FC<IInputProps & InputPropsType> = ({
   onBlur,
   name,
   error,
+  disabled,
 }) => {
   return (
     <div
       css={inputStyles({
         hasError: Boolean(error),
+        disabled,
       })}
       className={`${className} input-container`}
     >
@@ -38,6 +40,7 @@ const Input: React.FC<IInputProps & InputPropsType> = ({
         onBlur={onBlur}
         type={type}
         name={name}
+        disabled={disabled}
       />
       {error && <span className="error-message">{error}</span>}
     </div>

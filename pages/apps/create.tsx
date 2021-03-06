@@ -64,9 +64,6 @@ const CreateApplication: React.FC = () => {
             <Stack spacing={20}>
               <Stack spacing={10}>
                 <h2 className="title">Create application</h2>
-                {/* <p className="subText">
-                  Lorem ipssum dolor sit, amet consectetur adipisicing elit. Totam nihil distinctio
-                </p> */}
               </Stack>
               <Form form={form} onSubmit={onSubmit}>
                 <Stack spacing={20}>

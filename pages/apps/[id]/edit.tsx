@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { DashboardLayout } from 'components/common';
 import { Grid } from 'components/layout';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { GridItem } from 'components/layout/Grid';
 import { Button, Form, Input } from 'components/form';
 import { useForm } from 'hooks';
 import { Stack } from 'components/layout';
-import theme from 'theme';
 import toast from 'components/toast/Toaster';
 import { guardHermes } from 'utils/hermes';
 import { LOGIN_SUCCESSFUL } from 'constants/requests';
-import { IApplicationProps, StyleFunction } from 'types';
+import { IApplicationProps } from 'types';
 import { generateStyles } from '../create';
 
 interface IProps {
@@ -52,7 +51,7 @@ const EditApplication: React.FC<IProps> = ({ app }) => {
     } catch (error) {
       setShowLoading(false);
       toast.notify({
-        title: 'Unable to update application, please try again ',
+        title: 'Unable to update application, please try again',
         type: 'error',
         position: 'bottomRight',
       });
@@ -69,10 +68,7 @@ const EditApplication: React.FC<IProps> = ({ app }) => {
           <GridItem span={3} className="form-container">
             <Stack spacing={20}>
               <Stack spacing={10}>
-                <h2 className="title">Create application</h2>
-                {/* <p className="subText">
-                  Lorem ipssum dolor sit, amet consectetur adipisicing elit. Totam nihil distinctio
-                </p> */}
+                <h2 className="title">Edit application</h2>
               </Stack>
               <Form form={form} onSubmit={onSubmit}>
                 <Stack spacing={20}>

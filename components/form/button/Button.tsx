@@ -10,7 +10,6 @@ const buttonDefaults: CSSObject = {
   height: '50px',
   borderRadius: '6px',
   border: '0',
-  margin: '20px 0',
   backgroundColor: theme.colors.primary,
   boxShadow: theme.shadows.md,
   cursor: 'pointer',
