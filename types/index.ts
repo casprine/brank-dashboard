@@ -86,3 +86,56 @@ export interface IApplicationProps {
   access_token: string;
   callback_url: string;
 }
+
+export type func = () => void;
+export interface IAppLink {
+  code: string;
+  environment: 'development' | 'production';
+  state: 'claimed' | 'unclaimed';
+  created_at: Date | string;
+  id: number;
+}
+
+export interface ITable {
+  headings?: string[];
+  rows?: any[];
+  hasCheckbox?: boolean;
+  title?: string;
+  className?: string;
+  hasFooter?: boolean;
+  paginationOptions?: IPagination;
+  columnsToSearch?: string[] | string;
+  rowSelection?: IRowSelection;
+  tableHeaderRow?: any;
+  showPagination?: boolean;
+}
+export interface IPagination {
+  totalRecords?: number;
+  pageLimit?: number;
+  pageNeighbours?: number;
+  currentPage?: number;
+  onPageChange?: (args: IPagination) => void;
+  onPageLimitChange?: (pageLimit: number) => void;
+}
+
+export interface IRowSelection {
+  type: 'checkbox' | 'radio';
+}
+
+export interface IAction {
+  label: string;
+  function?: func;
+  buttonAppearance?: buttonAppearance;
+  path?: string;
+  color?: string;
+  // buttonProps?: IButton;
+}
+
+export interface ITableColumn {
+  title: string;
+  dataIndex: string;
+  key: string;
+  render?(cellData?: any, rowData?: any): any;
+  cellStyle?: CSSObject | {};
+  span?: number;
+}

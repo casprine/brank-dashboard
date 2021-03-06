@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Flex from 'components/layout/Flex';
 import theme from 'theme';
-import { func, StyleFunction } from 'src/utils/types';
+import { func, StyleFunction } from 'types';
 import { useMeasure } from 'hooks';
 
 export interface ITabRoute {
@@ -133,21 +133,25 @@ const Tab: React.FC<IProps> = ({ routes = sampleRoutes, gap = 24, activeViewInde
   );
 };
 
-const generateStyles: StyleFunction<IProps> = () => {
+const generateStyles: StyleFunction = () => {
   return {
     marginBottom: '4rem',
     width: '100%',
 
     '.tab-container': {
       overflowY: 'hidden',
-      boxShadow: 'none',
       borderBottom: `1px solid ${theme.colors.gray[100]}`,
+      boxShadow: theme.shadows.sm,
+      borderRadius: 6,
     },
 
     '.list': {
       position: 'relative',
       width: '100%',
       display: 'flex',
+      backgroundColor: 'white',
+      padding: '5px 0',
+      borderRadius: 6,
     },
 
     '.tab-item': {
@@ -198,7 +202,7 @@ const generateStyles: StyleFunction<IProps> = () => {
     },
 
     '*': {
-      //   outline: '1px dotted red',
+      // outline: '1px dotted red',
     },
   };
 };

@@ -8,13 +8,12 @@ import theme from 'theme';
 import { IUseForm } from 'hooks/useForm';
 
 interface IProps {
-  app: IApplicationProps;
   form: IUseForm;
   onSubmit: () => void;
   isLoading: boolean;
 }
 
-const ApplicantionForm: React.FC<IProps> = ({ app, form, onSubmit, isLoading }) => {
+const ApplicantionForm: React.FC<IProps> = ({ form, onSubmit, isLoading }) => {
   const [mode, setMode] = useState<'edit' | 'view'>('view');
 
   return (
@@ -23,7 +22,7 @@ const ApplicantionForm: React.FC<IProps> = ({ app, form, onSubmit, isLoading }) 
         <GridItem span={3} className="form-container">
           <Stack spacing={20}>
             <Stack spacing={10} isInline jc="space-between" ai="center">
-              <h2 className="title">{mode === 'edit' ? 'Edit application' : 'Application'}</h2>
+              <h2 className="tab-title">{mode === 'edit' ? 'Edit application' : 'Application'}</h2>
               {mode === 'view' && <Button action={() => setMode('edit')}>Edit</Button>}
             </Stack>
 
@@ -89,12 +88,6 @@ const generateStyles: StyleFunction = () => {
     boxShadow: theme.shadows.sm,
     borderRadius: 6,
     width: '50%',
-
-    '.title': {
-      fontSize: '1.5rem',
-      fontFamily: theme.typography.fonts.sans,
-      fontWeight: 600,
-    },
   };
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import brank from 'brank-connect';
+import brank from '../../js-sdk/dist/index';
 
 interface IBrank {
   key: string;

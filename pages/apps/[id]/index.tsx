@@ -6,19 +6,76 @@ import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { useBrank } from 'hooks';
 import theme from 'theme';
-import { IApplicationProps, StyleFunction } from 'types';
+import { IApplicationProps, StyleFunction, IAppLink, ITableColumn } from 'types';
 import { Button } from 'components/form';
-import { truncateString, copyText } from 'utils/helpers';
+import { copyText } from 'utils/helpers';
 import Tab from 'components/Tab/Tab';
 import ApplicationForm from 'components/application/ApplicationForm';
 import { useForm } from 'hooks';
 import { LOGIN_SUCCESSFUL } from 'constants/requests';
 import toast from 'components/toast/Toaster';
 import { Input } from 'components/form';
-
+import { CSSObject } from '@emotion/react';
+import DataTable from 'components/dataTable/DataTable';
 interface IProps {
   app: IApplicationProps;
 }
+
+const sampleApplinkData: IAppLink[] = [
+  {
+    code: '2449Sirtr',
+    environment: 'development',
+    state: 'claimed',
+    created_at: new Date(),
+    id: Math.floor(Math.random() * 100),
+  },
+];
+
+const appLinkColumns: ITableColumn[] = [
+  {
+    title: 'Id',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'Created On',
+    dataIndex: 'created_at',
+    key: 'created_at',
+    render: (created_at) => {
+      return (
+        <p css={{ fontSize: '13px', color: theme.colors.gray[500] }}>
+          {format(new Date(created_at), 'MMM dd')}
+        </p>
+      );
+    },
+  },
+  {
+    title: 'Contract Code',
+    dataIndex: 'code',
+    key: 'code',
+    render: (code) => {
+      return <p css={{ fontSize: '13px', color: theme.colors.gray[500] }}>{code}</p>;
+    },
+  },
+
+  {
+    title: 'Environment',
+    dataIndex: 'environment',
+    key: 'environment',
+    render: (environment) => {
+      return <p css={{ fontSize: '13px', color: theme.colors.gray[500] }}>{environment}</p>;
+    },
+  },
+
+  {
+    title: 'State',
+    dataIndex: 'state',
+    key: 'state',
+    render: (state) => {
+      return <p css={{ fontSize: '13px', color: theme.colors.gray[500] }}>{state}</p>;
+    },
+  },
+];
 
 const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
   const router = useRouter();
@@ -27,7 +84,7 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
   const [client, setClient] = useState(app);
 
   const brankInstance = useBrank({
-    key: client?.public_key,
+    key: app?.public_key,
     onSuccess: (code: string) =>
       toast.notify({ title: 'Link succesful, ', description: `code: ${code}`, position: 'top' }),
   });
@@ -60,7 +117,7 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
           type: 'success',
         });
 
-        setClient(data.data);
+        setClient(data?.data?.app);
 
         // router.push(`/apps/${app.id}`);
       }
@@ -80,12 +137,7 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
     {
       label: 'Details',
       render: (
-        <ApplicationForm
-          app={app}
-          form={form}
-          isLoading={editingApplication}
-          onSubmit={onEditApplication}
-        />
+        <ApplicationForm form={form} isLoading={editingApplication} onSubmit={onEditApplication} />
       ),
     },
 
@@ -94,7 +146,26 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
       render: () => {
         return (
           <Flex stack className="api-keys">
-            <h5 className="title">Keys</h5>
+            <Flex ai="center" jc="space-between" styles={{ marginBottom: 10 }}>
+              <h5 className="tab-title">Keys</h5>
+              <a className="docs-link" target="_blank" href="https://docs.getbrank.com/keys">
+                Learn more in the docs
+              </a>
+            </Flex>
+
+            <Stack jc="flex-start" ai="flex-start" styles={{ marginTop: 20 }}>
+              <Flex ai="center" jc="space-between" style={{ width: '100%' }}>
+                <p>Public Key</p>
+                <div
+                  className="copy-action"
+                  onClick={() => copyText(client?.public_key, 'Public key copied')}
+                >
+                  Copy
+                </div>
+              </Flex>
+
+              <Input value={client?.public_key} className="copy-value" />
+            </Stack>
 
             <Stack jc="flex-start" ai="flex-start" styles={{ marginTop: 30 }}>
               <Flex ai="center" jc="space-between" style={{ width: '100%' }}>
@@ -109,19 +180,29 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
 
               <Input value={client?.access_token} className="copy-value" />
             </Stack>
-            <Stack jc="flex-start" ai="flex-start" styles={{ marginTop: 20 }}>
-              <Flex ai="center" jc="space-between" style={{ width: '100%' }}>
-                <p>Public Key</p>
-                <div
-                  className="copy-action"
-                  onClick={() => copyText(client?.public_key, 'Public key copied')}
-                >
-                  Copy
-                </div>
-              </Flex>
+          </Flex>
+        );
+      },
+    },
 
-              <Input value={client?.public_key} className="copy-value" />
-            </Stack>
+    {
+      label: 'Links',
+      render: () => {
+        return (
+          <Flex className="app-links" stack>
+            <Flex ai="center" jc="space-between" styles={{ marginBottom: 20 }}>
+              <h5 className="tab-title">Links</h5>
+              <a className="docs-link" target="_blank" href="https://docs.getbrank.com/keys">
+                Learn more in the docs
+              </a>
+            </Flex>
+
+            <DataTable
+              title="links"
+              showHeader={false}
+              columns={appLinkColumns}
+              data={sampleApplinkData}
+            />
           </Flex>
         );
       },
@@ -169,12 +250,36 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
   );
 };
 
-const generateStyles: StyleFunction = () => {
+const generateStyles: StyleFunction = (): CSSObject => {
   return {
     '.header': {
       marginBottom: '1.5rem',
       marginTop: '2rem',
     },
+
+    '.docs-link': {
+      fontSize: '16px',
+      textDecoration: 'underline',
+    },
+
+    '.title': {
+      textTransform: 'capitalize',
+      color: theme.colors.primary,
+      fontFamily:
+        '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif',
+      fontFeatureSettings: '"pnum"',
+      fontVariant: 'proportional-nums',
+      lineHeight: '32px',
+      fontWeight: 700,
+      fontSize: '28px',
+    },
+
+    '.tab-title': {
+      fontSize: '1.5rem',
+      fontFamily: theme.typography.fonts.sans,
+      fontWeight: 600,
+    },
+
     '.api-keys': {
       margin: '20px 0',
       backgroundColor: 'white',
@@ -212,16 +317,13 @@ const generateStyles: StyleFunction = () => {
       },
     },
 
-    '.title': {
-      textTransform: 'capitalize',
-      color: theme.colors.primary,
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif',
-      fontFeatureSettings: '"pnum"',
-      fontVariant: 'proportional-nums',
-      lineHeight: '32px',
-      fontWeight: 700,
-      fontSize: '28px',
+    '.app-links': {
+      margin: '20px 0',
+      backgroundColor: 'white',
+      padding: '25px 20px',
+      boxShadow: theme.shadows.sm,
+      borderRadius: 6,
+      // width: '60%',
     },
 
     '.sub-title': {

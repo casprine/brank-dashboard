@@ -33,7 +33,7 @@ export interface IToast {
 
 const Toast: React.FC<IToast> = ({
   title,
-  description = `You can find your apps on the app's page`,
+  description,
   onClose,
   duration = 5000,
   renderToast,
@@ -68,7 +68,7 @@ const Toast: React.FC<IToast> = ({
       {renderToast ? (
         renderToast({ close: onClose })
       ) : (
-        <Flex ai="flex-start" className="toast">
+        <Flex ai={description ? 'flex-start' : 'center'} className="toast">
           {type === 'success' && (
             <Flex
               className="status-icon-container"
