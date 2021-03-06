@@ -1,4 +1,5 @@
 import { Dict } from 'types';
+import toast from 'components/toast/Toaster';
 
 export function resetObject(object: any) {
   const keys = Object.keys(object);
@@ -90,4 +91,18 @@ export function formatMoney(value: string | number = 0) {
     })
     .replace('$', '')
     .replace('US', '');
+}
+
+export function copyText(text: string, message: string) {
+  navigator?.clipboard?.writeText(text);
+  toast.notify({
+    position: 'top',
+    title: message,
+    type: 'success',
+    description: '',
+  });
+}
+
+export function truncateString(fileName: string = '', length = 20, extension = '...') {
+  return `${fileName.slice(0, length)}.${extension}`;
 }

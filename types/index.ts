@@ -84,4 +84,5 @@ export interface IApplicationProps {
   id: number;
   logo: string;
   access_token: string;
+  callback_url: string;
 }

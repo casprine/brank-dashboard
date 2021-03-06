@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { DashboardLayout } from 'components/common';
 import { Grid } from 'components/layout';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import { GridItem } from 'components/layout/Grid';
 import { Button, Form, Input } from 'components/form';
 import { useForm } from 'hooks';
@@ -10,43 +10,49 @@ import theme from 'theme';
 import toast from 'components/toast/Toaster';
 import { guardHermes } from 'utils/hermes';
 import { LOGIN_SUCCESSFUL } from 'constants/requests';
+import { IApplicationProps, StyleFunction } from 'types';
+import { generateStyles } from '../create';
 
-const CreateApplication: React.FC = () => {
+interface IProps {
+  app: IApplicationProps;
+}
+const EditApplication: React.FC<IProps> = ({ app }) => {
   const [showLoadingIndicator, setShowLoading] = useState<boolean>(false);
+  const router = useRouter();
+
+  if (!app?.id) router.push('/apps');
 
   const form = useForm({
     fields: {
-      name: '',
-      logo: '',
-      description: '',
-      callback_url: '',
+      name: app?.name,
+      logo: app?.logo,
+      description: app?.description,
+      callback_url: app?.callback_url,
     },
   });
-
-  const router = useRouter();
 
   async function onSubmit() {
     setShowLoading(true);
 
     try {
       const { data } = await guardHermes({
-        url: '/applications',
+        url: `/applications/id/${app.id}`,
         data: form.inputState,
-        method: 'POST',
+        method: 'PUT',
       });
 
       if (data.message === LOGIN_SUCCESSFUL) {
         toast.notify({
-          title: 'Application created succesfully',
+          title: 'Application updated succesfully',
           position: 'bottomRight',
           type: 'success',
         });
-        router.push('/apps');
+        router.push(`/apps/${app.id}`);
       }
     } catch (error) {
       setShowLoading(false);
       toast.notify({
-        title: 'Unable to create application',
+        title: 'Unable to update application, please try again ',
         type: 'error',
         position: 'bottomRight',
       });
@@ -103,7 +109,7 @@ const CreateApplication: React.FC = () => {
                     onChange={form.onChange}
                   />
                   <Button isLoading={showLoadingIndicator} size="lg" type="submit">
-                    Create
+                    Update
                   </Button>
                 </Stack>
               </Form>
@@ -116,41 +122,21 @@ const CreateApplication: React.FC = () => {
   );
 };
 
-export function generateStyles() {
+export default EditApplication;
+
+export async function getServerSideProps(context: any) {
+  const id = context?.query?.id;
+  const cookie = context.req.headers.cookie;
+
+  let { data } = await guardHermes({
+    url: `/applications/id/${id}`,
+    method: 'GET',
+    token: cookie.split(';')[0].split('=')[1],
+  });
+
   return {
-    marginBottom: '1.5rem',
-    marginTop: '5rem',
-
-    '.form-container': {
-      width: '80%',
-      margin: '0 auto',
-    },
-
-    h2: {
-      fontSize: '30px',
-      fontWeight: 800,
-      fontFamily: theme.typography.fonts.bold,
-      color: theme.colors.gray[700],
-    },
-
-    '.input-container': {
-      width: '100%',
-
-      input: {
-        backgroundColor: 'white',
-      },
-
-      label: {
-        color: theme.colors.blackAlpha[700],
-      },
-    },
-
-    p: { color: theme.colors.gray[600], fontSize: 14, width: '80%' },
-
-    '*': {
-      //   outline: '1px dotted red',
+    props: {
+      app: data.data.app ?? {},
     },
   };
 }
-
-export default CreateApplication;
