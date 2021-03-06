@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Flex, Stack } from 'components/layout';
 import { DashboardLayout } from 'components/common';
-import { guardHermes, hermes } from 'utils/hermes';
+import { guardHermes } from 'utils/hermes';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { useBrank } from 'hooks';

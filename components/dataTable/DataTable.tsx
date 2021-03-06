@@ -4,7 +4,7 @@ import Cell from './Cell';
 import { Flex } from 'components/layout';
 import Empty, { IEmptyProps } from './Empty';
 import { Separator } from 'components/common';
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
 import { usePagination } from 'hooks';
 import theme from 'theme';
 import Loader from 'components/Loader/Loader';
@@ -59,14 +59,14 @@ const DataTable: React.FC<IDataTable> = ({
   onRowSelect,
   showHeader = true,
   showDateFilter = false,
-  showPagination = true,
+  // showPagination = true,
   emptyStateProps,
 }) => {
   const headings = columns?.map((column) => {
     return column.title;
   });
 
-  const { paginatedData, paginationConfig } = usePagination(data, paginationOptions);
+  const { paginatedData } = usePagination(data, paginationOptions);
 
   return (
     <div
