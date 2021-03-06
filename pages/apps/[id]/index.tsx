@@ -17,11 +17,43 @@ import toast from 'components/toast/Toaster';
 import { Input } from 'components/form';
 import { CSSObject } from '@emotion/react';
 import DataTable from 'components/dataTable/DataTable';
+import Tag from 'components/Tag/Tag';
 interface IProps {
   app: IApplicationProps;
 }
 
 const sampleApplinkData: IAppLink[] = [
+  {
+    code: '2449Sirtr',
+    environment: 'development',
+    state: 'claimed',
+    created_at: new Date(),
+    id: Math.floor(Math.random() * 100),
+  },
+
+  {
+    code: '2449Sirtr',
+    environment: 'production',
+    state: 'claimed',
+    created_at: new Date(),
+    id: Math.floor(Math.random() * 100),
+  },
+
+  {
+    code: '2449Sirtr',
+    environment: 'development',
+    state: 'unclaimed',
+    created_at: new Date(),
+    id: Math.floor(Math.random() * 100),
+  },
+
+  {
+    code: '2449Sirtr',
+    environment: 'development',
+    state: 'claimed',
+    created_at: new Date(),
+    id: Math.floor(Math.random() * 100),
+  },
   {
     code: '2449Sirtr',
     environment: 'development',
@@ -43,8 +75,8 @@ const appLinkColumns: ITableColumn[] = [
     key: 'created_at',
     render: (created_at) => {
       return (
-        <p css={{ fontSize: '13px', color: theme.colors.gray[500] }}>
-          {format(new Date(created_at), 'MMM dd')}
+        <p css={{ fontSize: '15px', color: theme.colors.gray[700] }}>
+          {format(new Date(created_at), 'MMM dd, yyyy')}
         </p>
       );
     },
@@ -54,7 +86,7 @@ const appLinkColumns: ITableColumn[] = [
     dataIndex: 'code',
     key: 'code',
     render: (code) => {
-      return <p css={{ fontSize: '13px', color: theme.colors.gray[500] }}>{code}</p>;
+      return <p css={{ fontSize: '15px', color: theme.colors.gray[700] }}>{code}</p>;
     },
   },
 
@@ -62,8 +94,14 @@ const appLinkColumns: ITableColumn[] = [
     title: 'Environment',
     dataIndex: 'environment',
     key: 'environment',
-    render: (environment) => {
-      return <p css={{ fontSize: '13px', color: theme.colors.gray[500] }}>{environment}</p>;
+    render: (environment: string) => {
+      const environmentColor: any = {
+        production: 'green',
+        development: 'blue',
+      };
+      return (
+        <Tag label={environment} shape="rounded" color={environmentColor[environment]} size="md" />
+      );
     },
   },
 
@@ -72,7 +110,12 @@ const appLinkColumns: ITableColumn[] = [
     dataIndex: 'state',
     key: 'state',
     render: (state) => {
-      return <p css={{ fontSize: '13px', color: theme.colors.gray[500] }}>{state}</p>;
+      const stateType: any = {
+        unclaimed: 'orange',
+        claimed: 'violet',
+      };
+
+      return <Tag label={state} shape="rounded" color={stateType[state]} size="md" />;
     },
   },
 ];

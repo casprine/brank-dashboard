@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import { subDays, isWithinInterval, parseISO, endOfDay, startOfDay } from 'date-fns';
+import React from 'react';
 import { TableRow } from './TableRow';
 import Cell from './Cell';
 import { Flex } from 'components/layout';
 import Empty, { IEmptyProps } from './Empty';
 import { Separator } from 'components/common';
 import Pagination from './Pagination';
-import { Button } from 'components/form';
 import { usePagination } from 'hooks';
 import theme from 'theme';
 import Loader from 'components/Loader/Loader';
@@ -53,14 +51,11 @@ const DataTable: React.FC<IDataTable> = ({
   columns,
   data = [],
   paginationOptions,
-  columnsToSearch,
-  rowSelection,
   actions,
   isLoading = false,
   className,
   hasBorder = true,
   showHeadings = true,
-  searchPlaceholder,
   onRowSelect,
   showHeader = true,
   showDateFilter = false,
@@ -89,7 +84,8 @@ const DataTable: React.FC<IDataTable> = ({
                 css={{
                   color: theme.colors.secondary,
                   fontSize: 18,
-                  fontFamily: theme.typography.fonts.bold,
+                  fontFamily: theme.typography.fonts.sans,
+                  fontWeight: 600,
                 }}
               >
                 {title}

@@ -45,15 +45,22 @@ const Cell: React.FC<IProps> = ({
       css={{
         ...cellStyle,
         ...styles,
-        color: theme.colors.gray[600],
+        color: theme.colors.black,
         textTransform: 'uppercase',
-        fontFamily: theme.typography.fonts.bold,
-        fontSize: 13,
+
         paddingLeft: index === 0 ? '24px' : '24px',
       }}
       className={className}
     >
-      {children}
+      <h5
+        css={{
+          fontFamily: theme.typography.fonts.sans,
+          fontSize: 15,
+          fontWeight: 800,
+        }}
+      >
+        {children}
+      </h5>
     </th>
   ) : (
     <td
@@ -67,7 +74,7 @@ const Cell: React.FC<IProps> = ({
       }}
       className={className}
     >
-      {path ? <Link to={path}>{children}</Link> : children}
+      {path ? <Link href={path}>{children}</Link> : children}
     </td>
   );
 };

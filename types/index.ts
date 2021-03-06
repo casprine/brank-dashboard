@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import { CSSObject } from '@emotion/react';
 import { IconName, IconProp } from '@fortawesome/fontawesome-svg-core';
+import colors from 'theme/colors';
+const { transparent, current, black, white, primary, secondary, grey, ...colorGroups } = colors;
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -68,6 +70,7 @@ export type buttonAppearance =
   | 'error';
 export type buttonSizes = 'xs' | 'sm' | 'md' | 'lg';
 export type ButtonType = 'submit' | 'reset' | 'button';
+export type sizes = '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export interface IMetric {
   icon: IconName;
@@ -139,3 +142,5 @@ export interface ITableColumn {
   cellStyle?: CSSObject | {};
   span?: number;
 }
+
+export type ColorGroupType = keyof typeof colorGroups;
