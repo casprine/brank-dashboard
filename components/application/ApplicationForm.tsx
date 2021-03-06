@@ -3,7 +3,7 @@ import { Grid } from 'components/layout';
 import { GridItem } from 'components/layout/Grid';
 import { Button, Form, Input } from 'components/form';
 import { Stack } from 'components/layout';
-import { IApplicationProps, StyleFunction } from 'types';
+import { StyleFunction } from 'types';
 import theme from 'theme';
 import { IUseForm } from 'hooks/useForm';
 

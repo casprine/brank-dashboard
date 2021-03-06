@@ -38,7 +38,7 @@ const Pagination: React.FC<IPagination> = ({
   pageLimit = 10,
   pageNeighbours = 1,
   onPageChange = () => {},
-  onPageLimitChange = () => {},
+  // onPageLimitChange = () => {},
 }) => {
   const [pageLimitState, setPageLimit] = React.useState(pageLimit);
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -189,6 +189,9 @@ const Pagination: React.FC<IPagination> = ({
               <option value={20}>Show 20 Records</option>
             </LegacySelect>
           </div> */}
+
+          <p onClick={() => setPageLimit(10)}></p>
+
           <div>
             <Flex ai="center" css={{ height: '32px' }}>
               <p css={{ fontSize: '13px' }}>

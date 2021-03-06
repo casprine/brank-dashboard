@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Flex from 'components/layout/Flex';
@@ -7,7 +9,7 @@ import { useMeasure } from 'hooks';
 
 export interface ITabRoute {
   label: string;
-  render: JSX.Element | func;
+  render: func | JSX.Element;
 }
 
 interface IProps {
@@ -199,10 +201,6 @@ const generateStyles: StyleFunction = () => {
       height: '100%',
       overflow: 'hidden',
       outline: 'none',
-    },
-
-    '*': {
-      // outline: '1px dotted red',
     },
   };
 };

@@ -1,3 +1,4 @@
+// @ts-ignore
 import { CSSObject } from '@emotion/react';
 import React from 'react';
 import { ColorGroupType, DefaultHTMLProps, sizes } from 'types';
@@ -5,6 +6,8 @@ import { Flex } from 'components/layout';
 import theme from 'theme';
 
 type TagType = 'error' | 'success' | 'info' | 'disabled' | 'warning';
+type StyleFunction<T> = (props?: T) => CSSObject;
+
 interface ITag {
   type?: TagType;
   shape?: 'pill' | 'rounded';
@@ -81,9 +84,7 @@ const Tag: React.FC<ITag & DefaultHTMLProps<HTMLDivElement>> = ({
   );
 };
 
-type StyleFunction<T> = (props?: Partial<T>) => CSSObject;
-
-const generateStyles: StyleFunction<ITag> = (props: ITag) => {
+const generateStyles: StyleFunction<ITag> = (props) => {
   const height = tagSizeStyles[props?.size as sizes].height as number;
 
   function getColors(): CSSObject {

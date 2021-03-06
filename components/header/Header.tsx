@@ -5,8 +5,8 @@ import { Button } from 'components/form';
 interface IProps {
   title: string;
   subTitle?: string;
-  action?: () => void;
   actionLabel?: string;
+  action?: () => void;
 }
 
 const Header: React.FC<IProps> = ({ title, subTitle, action = null, actionLabel }) => {

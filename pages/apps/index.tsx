@@ -18,7 +18,7 @@ const Apps: React.FC<IProps> = ({ apps }) => {
     <DashboardLayout>
       <Header
         title="Applications"
-        action={apps.length > 0 ? () => router.push('/apps/create') : null}
+        action={apps.length > 0 ? () => router.push('/apps/create') : undefined}
         actionLabel="Create Application"
       />
 
