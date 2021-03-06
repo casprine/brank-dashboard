@@ -176,7 +176,7 @@ const DataTable: React.FC<IDataTable> = ({
             </table>
           </div>
           <Separator gap={0} />
-          {paginationConfig?.totalRecords && showPagination ? (
+          {/* {paginationConfig?.totalRecords && showPagination ? (
             <Flex css={{ padding: hasBorder ? '12px 0px' : '12px 0' }}>
               <Pagination
                 totalRecords={paginationConfig?.totalRecords}
@@ -185,7 +185,7 @@ const DataTable: React.FC<IDataTable> = ({
                 onPageLimitChange={paginationConfig?.onPageLimitChange}
               />
             </Flex>
-          ) : null}
+          ) : null} */}
         </div>
       )}
       {!isLoading && data.length === 0 && (

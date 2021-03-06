@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Flex, Stack } from 'components/layout';
 import { DashboardLayout } from 'components/common';
-import { guardHermes } from 'utils/hermes';
+import { guardHermes, hermes } from 'utils/hermes';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { useBrank } from 'hooks';
@@ -21,47 +21,6 @@ import Tag from 'components/Tag/Tag';
 interface IProps {
   app: IApplicationProps;
 }
-
-const sampleApplinkData: IAppLink[] = [
-  {
-    code: '2449Sirtr',
-    environment: 'development',
-    state: 'claimed',
-    created_at: new Date(),
-    id: Math.floor(Math.random() * 100),
-  },
-
-  {
-    code: '2449Sirtr',
-    environment: 'production',
-    state: 'claimed',
-    created_at: new Date(),
-    id: Math.floor(Math.random() * 100),
-  },
-
-  {
-    code: '2449Sirtr',
-    environment: 'development',
-    state: 'unclaimed',
-    created_at: new Date(),
-    id: Math.floor(Math.random() * 100),
-  },
-
-  {
-    code: '2449Sirtr',
-    environment: 'development',
-    state: 'claimed',
-    created_at: new Date(),
-    id: Math.floor(Math.random() * 100),
-  },
-  {
-    code: '2449Sirtr',
-    environment: 'development',
-    state: 'claimed',
-    created_at: new Date(),
-    id: Math.floor(Math.random() * 100),
-  },
-];
 
 const appLinkColumns: ITableColumn[] = [
   {
@@ -125,7 +84,7 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
   if (!app?.id) router.push('/apps');
 
   const [client, setClient] = useState(app);
-
+  const [appLinks, setAppLinks] = useState<IAppLink[] | []>([]);
   const brankInstance = useBrank({
     key: app?.public_key,
     onSuccess: (code: string) =>
@@ -142,6 +101,28 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
       callback_url: app?.callback_url,
     },
   });
+
+  function fetchLinks() {
+    guardHermes({
+      url: `/links`,
+      data: {
+        offSet: 0,
+        limit: 100,
+        access_token: app?.access_token,
+      },
+    })
+      .then((response) => {
+        const links = response?.data?.data?.links;
+        if (links) {
+          setAppLinks(links);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  React.useEffect(fetchLinks, []);
 
   async function onEditApplication() {
     setEditingApplication(true);
@@ -161,8 +142,6 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
         });
 
         setClient(data?.data?.app);
-
-        // router.push(`/apps/${app.id}`);
       }
     } catch (error) {
       setEditingApplication(false);
@@ -240,12 +219,7 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
               </a>
             </Flex>
 
-            <DataTable
-              title="links"
-              showHeader={false}
-              columns={appLinkColumns}
-              data={sampleApplinkData}
-            />
+            <DataTable title="links" showHeader={false} columns={appLinkColumns} data={appLinks} />
           </Flex>
         );
       },
