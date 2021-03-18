@@ -170,7 +170,7 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
           <Flex stack className="api-keys">
             <Flex ai="center" jc="space-between" styles={{ marginBottom: 10 }}>
               <h5 className="tab-title">Keys</h5>
-              <a className="docs-link" target="_blank" href="https://docs.getbrank.com/keys">
+              <a className="docs-link" target="_blank" href="https://docs.withbrank.com/keys">
                 Learn more in the docs
               </a>
             </Flex>
@@ -214,7 +214,7 @@ const ApplicationDetailView: React.FC<IProps> = ({ app }) => {
           <Flex className="app-links" stack>
             <Flex ai="center" jc="space-between" styles={{ marginBottom: 20 }}>
               <h5 className="tab-title">Links</h5>
-              <a className="docs-link" target="_blank" href="https://docs.getbrank.com/keys">
+              <a className="docs-link" target="_blank" href="https://docs.withbrank.com/keys">
                 Learn more in the docs
               </a>
             </Flex>
